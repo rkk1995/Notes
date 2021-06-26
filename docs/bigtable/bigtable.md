@@ -22,12 +22,10 @@
   - client library caches tablet location(search recursively if cache is invalid)
 
   ![tablet location](images/tablet-location.jpg)
-
 - Tablet Assignment
 
   - tablet server creates file in Chubby directory; master monitors the directory to discover tablet server
   - when master starts, it creates file in Chubby directory, communicates with live tablet servers and scans METADATA table
-
 - Tablet Serving
 
   - updates: commit log -> memtable -> SSTables

@@ -1,8 +1,8 @@
 site_name: kophy's notes
-repo_url: https://github.com/kophy/Notes
+repo_url: https://github.com/rkk1995/Notes2
 
 theme:
-  name: "sandstone"
+  name: "darkly"
 
 extra_javascript:
     - 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'
