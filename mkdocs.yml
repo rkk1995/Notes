@@ -1,51 +1,52 @@
-site_name: kophy's notes
-repo_url: https://github.com/rkk1995/Notes2
+site_name: RKK1995's notes
+repo_url: https://github.com/rkk1995/Notes
 
 theme:
-  name: "darkly"
+  name: material
+  features:
+    - content.tabs.link
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+  feature:
+    tabs: true
+
+  palette:
+    primary: 'blue'
+    accent: 'red'
+    
 
 extra_javascript:
     - 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'
 
 markdown_extensions:
+    - pymdownx.highlight
+    - pymdownx.superfences
     - mdx_math:
         enable_dollar_delimiter: True
+    - toc:
+        toc_depth: 0
     - mdx_truly_sane_lists
+    - pymdownx.superfences
+    - pymdownx.tabbed
 
 pages:
     - Home: 'index.md'
-    - Infrastructure:
-      - Storage:
-        - aurora: 'aurora/aurora.md'
-        - bigtable: 'bigtable/bigtable.md'
-        - dynamo: 'dynamo/dynamo.md'
-        - espresso: 'espresso/espresso.md'
-        - f1: 'f1/f1.md'
-        - gfs: 'gfs/gfs.md'
-        - gorilla: 'gorilla/gorilla.md'
-        - mongodb: 'mongodb/mongodb.md'
-        - snowflake: 'snowflake/snowflake.md'
-        - spanner: 'spanner/spanner.md'
-        - tao: 'tao/tao.md'
-      - Compute:
-        - mapreduce: 'mapreduce/mapreduce.md'
-        - flink: 'flink/flink.md'
-        - flume: 'flume/flume.md'
-        - rdd: 'rdd/rdd.md'
-        - d-stream: 'd-stream/d-stream.md'
-        - millwheel: 'millwheel/millwheel.md'
-        - pregel: 'pregel/pregel.md'
-        - storm: 'storm/storm.md'
-      - Cluster Management:
-        - borg: 'borg/borg.md'
-        - zookeeper: 'zookeeper/zookeeper.md'
-      - Misc:
-        - databus: 'databus/databus.md'
-        - kafka: 'kafka/kafka.md'
-        - zfs: 'zfs/zfs.md'
-    - Machine Learning:
-      - Embedding:
-        - word2vec: 'word2vec/word2vec.md'
-    - Advertisement:
-      - CTR:
-        - predicting-clicks: 'predicting-clicks/predicting-clicks.md'
+    - Papers:
+      - Infrastructure:
+        - Storage:
+          - gfs: 'gfs/gfs.md'
+          - tao: 'tao/tao.md'
+        - Compute:
+          - mapreduce: 'mapreduce/mapreduce.md'
+        # - Cluster Management:
+        #   - borg: 'borg/borg.md'
+        #   - zookeeper: 'zookeeper/zookeeper.md'
+        # - Misc:
+        #   - databus: 'databus/databus.md'
+        #   - kafka: 'kafka/kafka.md'
+        #   - zfs: 'zfs/zfs.md'

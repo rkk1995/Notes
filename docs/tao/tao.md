@@ -62,4 +62,3 @@ Association List: (id1, atype) -> [a1, a2, ..., an]
 - **Leader failures:** Followers reroute read misses directly to the database and writes to a random replacement leader.
 - **Invalidation and refill failures:** If a follower is unreachable, leader persists messages and redeliver them later. If these messages are lost due to permanent leader failure, a bulk invalidation operation is used to invalidate all data of specific shard in followers.
 - **Follower failures:** Client requests are failed over to followers in other tiers.
-
