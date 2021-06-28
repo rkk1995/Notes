@@ -8,5 +8,7 @@ I'm mainly interested in large-scale data systems including Ethereum and block-c
 
 ---
 
-<img src="calvin.jpg" alt="drawing" width="2000"/>
-</img>
+"A future is not given to you. It is something you must take for yourself."
+
+<!-- <img src="calvin.jpg" alt="drawing" width="2000"/>
+</img> -->
