@@ -8,5 +8,5 @@ I'm mainly interested in large-scale data systems including Ethereum and block-c
 
 ---
 
-<img src="/calvin.jpg" alt="drawing" width="2000"/>
+<img src="calvin.jpg" alt="drawing" width="2000"/>
 </img>
