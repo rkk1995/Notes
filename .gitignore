@@ -142,4 +142,4 @@ Scripts/
 *.cfg
 *.Ds_Store
 
-site/
+site/*

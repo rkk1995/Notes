@@ -2,7 +2,6 @@
 
 *A programming model and an associated implementation for processing and generating large data sets.*
 
-[MapReduce Paper](http://nil.csail.mit.edu/6.824/2020/papers/mapreduce.pdf)
 ## Introduction
 
 - Many computation tasks are conceptually straightforward, but given the size of input data, the computations have to be distributed across machines to finish in a reasonable amount of time.
