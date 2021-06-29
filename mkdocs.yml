@@ -43,7 +43,7 @@ pages:
           - gfs: 'gfs/gfs.md'
           - tao: 'tao/tao.md'
         - Compute:
-          - mapreduce: 'mapreduce/mapreduce.md'
+          - MapReduce: 'mapreduce/mapreduce.md'
         # - Cluster Management:
         #   - borg: 'borg/borg.md'
         #   - zookeeper: 'zookeeper/zookeeper.md'
