@@ -43,11 +43,12 @@ pages:
           - gfs: 'gfs/gfs.md'
           - tao: 'tao/tao.md'
         - Compute:
-          - MapReduce: 'mapreduce/mapreduce.md'
+          - mapreduce: 'mapreduce/mapreduce.md'
         # - Cluster Management:
         #   - borg: 'borg/borg.md'
         #   - zookeeper: 'zookeeper/zookeeper.md'
-        # - Misc:
+        - Cluster Management:
+          - raft : 'raft/raft.md'
         #   - databus: 'databus/databus.md'
         #   - kafka: 'kafka/kafka.md'
         #   - zfs: 'zfs/zfs.md'
