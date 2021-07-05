@@ -49,6 +49,7 @@ pages:
         #   - zookeeper: 'zookeeper/zookeeper.md'
         - Cluster Management:
           - raft : 'raft/raft.md'
+          - zookeeper : 'zookeeper/zookeeper.md'
         #   - databus: 'databus/databus.md'
         #   - kafka: 'kafka/kafka.md'
         #   - zfs: 'zfs/zfs.md'

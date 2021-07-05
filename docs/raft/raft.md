@@ -2,9 +2,16 @@
 
 *A consensus algorithm for managing a replicated log*
 
+MIT Notes [Part1](http://nil.csail.mit.edu/6.824/2020/notes/l-raft.txt) [Part2](http://nil.csail.mit.edu/6.824/2020/notes/l-raft2.txt)
+MIT FAQ [Part1](http://nil.csail.mit.edu/6.824/2020/papers/raft-faq.txt) [Part2](http://nil.csail.mit.edu/6.824/2020/papers/raft2-faq.txt)
 ## Raft Basics
 
-- Properties
+**Raft decomposes the consensus problem into three relatively independent subproblems**
+- Leader Election
+- Log replication
+- Safety
+
+- **Properties**
   - **Election Safety**: at most one leader can be elected in a given term.
   - **Leader Append-Only**: a leader never overwrites or deletes entries in its log; it only appends new entries.
   - **Log Matching**: if two logs contain an entry with the same index and term, then the logs are identical in all entries up through the given index.
