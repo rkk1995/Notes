@@ -6,10 +6,12 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 
 ## Basics
 
-- ZooKeeper provides a coordination kernel for clients to implement primitives for configuration, group membership, leader election and distributed lock.
+- ZooKeeper provides a coordination kernel for clients to implement primitives for dynamic configuration, group membership, leader election and distributed lock.
 - ZooKeeper implements non-blocking API, so a client can have multiple outstanding operations at a time.
-- ZooKeeper target workload read to write ration is 2:1 to 100:1. **Best for Read Heavy applications**
-- ZooKeeper guarantees 1) linearizable writes and 2) FIFO client ordering for all operations 
+- ZooKeeper target workload read to write ratio is 2:1 to 100:1 with data in the MB range. **Best for Read Heavy applications (Ideal for storing configuration information)**
+- ZooKeeper relaxes the conditions provided by Raft. Reads are eventually consistent Zookeeper guarantees :  
+  - 1) linearizable writes
+  - 2) FIFO client ordering for all operations, all requests from a given client are executed in the order that they were sent by the client.
 
 
 ## Service Overview
@@ -17,7 +19,10 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 ### znode
 
 - ZooKeeper provides the abstraction of a set of data nodes(znodes) organized by hierarchical namespaces.
-- znodes are in-memory data node stored in ZooKeeper. A znode can be regular or ephemeral(automatically removed when corresponding session terminates).
+- znodes are in-memory data node stored in ZooKeeper. Three types of znodes:
+  - regular
+  - ephemeral (automatically removed when corresponding session terminates).
+  - sequential (when a file is created with a given name, ZooKeeper appends a number. ZooKeeper guarantees to never repeat a number if several clients try to write.)
 - znodes are not for general data storage. Instead, they are used to store metadata or configuration of applications(typically 1MB).
 
 ![znode](images/znode.jpg)
@@ -29,17 +34,27 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 - For write methods, ZooKeeper accepts an optional expected version number(for example, `setData(path, data, version)`). If set, the write succeeds only if the actual version number of znode matches the expected one.
 - ZooKeeper client maintains session with ZooKeeper through heartbeat messages.
 
+1. create(path, data, flags(regular, ephemeral, sequential))
+2. delete(path, version): deletes if version matches
+3. exists(path, watch): watch is bool
+4. getData(path, watch)
+5. setData(path, data, version): sets if version matches
+6. getChildren(path, watch)
+7. sync(path): waits for all pending writes to complete
+
+
 ## Implementation
 
 - ZooKeeper service comprises an ensemble of servers that each has replicated ZooKeeper data. One is leader and the rest are followers.
 - Read requests are handled locally at each server, so it may return stale data since some committed transactions are not applied on that server yet.
 - Write requests are forwarded to leader. Leader (1) calculates the new system state to transform write requests into idempotent transactions and (2) broadcast the state changes to other servers through atomic broadcast protocol ZAB.
 - ZooKeeper uses TCP so message order is maintained by network.
-- ZooKeeper uses replay log and periodic snapshots for recoverability. ZooKeeper state is not locked when taking the snapshot, but idempotent transactions can be applied twice as long as in order.
+- ZooKeeper uses replay log and periodic snapshots for recoverability. Snapshots are fuzzy since ZooKeeper state is not locked when taking the snapshot. After reboot, ZooKeeper constructs a consistent snapshot by replaying all log entries from the point at which the snapshot started. Because updates in Zookeeper are idempotent and delivered in the same order, the application-state will be correct after reboot.
 
 ![components](images/components.jpg)
 
-### Atomic Broadcast 
+### Atomic Broadcast
+
 - Zab is an atomic broadcast protocol, uses simple majority quorums to decide on a proposal.
 - Leader executes the requests and broadcasts the change to the ZooKeeper state through Zab.
 - Zab guarantees the changes broadcast by a leader are delivered in order they were sent and all changes from previous leaders are delivered to an established leader before it broadcasts its own changes.
