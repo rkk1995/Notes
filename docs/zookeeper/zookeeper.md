@@ -8,11 +8,12 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 
 - ZooKeeper provides a coordination kernel for clients to implement primitives for dynamic configuration, group membership, leader election and distributed lock.
 - ZooKeeper implements non-blocking API, so a client can have multiple outstanding operations at a time.
-- ZooKeeper target workload read to write ratio is 2:1 to 100:1 with data in the MB range. **Best for Read Heavy applications (Ideal for storing configuration information)**
-- ZooKeeper relaxes the conditions provided by Raft. Reads are eventually consistent Zookeeper guarantees :  
+- ZooKeeper relaxes the conditions provided by Raft: reads are eventually consistent and can be served by replicas which increases read throughput.
+- Zookeeper guarantees :  
   - 1) linearizable writes
   - 2) FIFO client ordering for all operations, all requests from a given client are executed in the order that they were sent by the client.
-
+- ZooKeeper target workload read to write ratio is 2:1 to 100:1 with data in the MB range. 
+  - Best for Read Heavy applications such as storing configuration information since many servers will read this data and the data is small. Also, servers will pass a *watch* flag on reads on the configuration files and will be notified whenever they change.
 
 ## Service Overview
 
@@ -34,7 +35,8 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 - For write methods, ZooKeeper accepts an optional expected version number(for example, `setData(path, data, version)`). If set, the write succeeds only if the actual version number of znode matches the expected one.
 - ZooKeeper client maintains session with ZooKeeper through heartbeat messages.
 
-1. create(path, data, flags(regular, ephemeral, sequential))
+#### Operations
+1. create(path, data, flags(regular, ephemeral, sequential)): returns error if alraedy exists unless sequential create
 2. delete(path, version): deletes if version matches
 3. exists(path, watch): watch is bool
 4. getData(path, watch)
@@ -44,6 +46,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 
 
 ## Implementation
+![components](images/components.jpg)
 
 - ZooKeeper service comprises an ensemble of servers that each has replicated ZooKeeper data. One is leader and the rest are followers.
 - Read requests are handled locally at each server, so it may return stale data since some committed transactions are not applied on that server yet.
@@ -51,7 +54,6 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 - ZooKeeper uses TCP so message order is maintained by network.
 - ZooKeeper uses replay log and periodic snapshots for recoverability. Snapshots are fuzzy since ZooKeeper state is not locked when taking the snapshot. After reboot, ZooKeeper constructs a consistent snapshot by replaying all log entries from the point at which the snapshot started. Because updates in Zookeeper are idempotent and delivered in the same order, the application-state will be correct after reboot.
 
-![components](images/components.jpg)
 
 ### Atomic Broadcast
 
@@ -60,7 +62,8 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 - Zab guarantees the changes broadcast by a leader are delivered in order they were sent and all changes from previous leaders are delivered to an established leader before it broadcasts its own changes.
 - TCP for transport so message order is maintained by the network.
 - Use log to keep track of proposals as the write-ahead log for the in-memory database.
-- 
+
+
 ### Client Server Interactions
 
 - Read is handled locally in memory. Each read request is processed and tagged with a zxid that corresponds to the last transaction seen by the server.
@@ -83,4 +86,11 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
   - Designate node, z<sub>g</sub> to represent the group. 
   - When a process member of the group starts, it creates an ephemeral child znode under z<sub>g</sub>.
   - Processes can obtain group information by simply listing the children of z<sub>g</sub>.
-- Simple Locks Without Herd Effect
+- Mini Transactions - Effect is that we can achieve atomic operations. Example of atomic counter:
+```python
+while true:
+  x,v = getData("f")
+  if setData("f", x+1, v): break
+  sleep 
+```
+- Simple Locks Without Herd Effect (Scalable Locks)

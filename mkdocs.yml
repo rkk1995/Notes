@@ -42,17 +42,13 @@ pages:
         - Storage:
           - gfs: 'gfs/gfs.md'
           - tao: 'tao/tao.md'
+          - craq: 'craq/craq.md'
         - Compute:
           - mapreduce: 'mapreduce/mapreduce.md'
-        # - Cluster Management:
-        #   - borg: 'borg/borg.md'
-        #   - zookeeper: 'zookeeper/zookeeper.md'
         - Cluster Management:
           - raft : 'raft/raft.md'
           - zookeeper : 'zookeeper/zookeeper.md'
-        #   - databus: 'databus/databus.md'
-        #   - kafka: 'kafka/kafka.md'
-        #   - zfs: 'zfs/zfs.md'
+
 extra:
   social:
     - icon: fontawesome/brands/twitter

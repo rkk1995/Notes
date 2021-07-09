@@ -2,14 +2,15 @@
 
 *A consensus algorithm for managing a replicated log*
 
-MIT Notes [Part1](http://nil.csail.mit.edu/6.824/2020/notes/l-raft.txt) [Part2](http://nil.csail.mit.edu/6.824/2020/notes/l-raft2.txt)
+MIT Notes [Part1](http://nil.csail.mit.edu/6.824/2020/notes/l-raft.txt) [Part2](http://nil.csail.mit.edu/6.824/2020/notes/l-raft2.txt)  
 MIT FAQ [Part1](http://nil.csail.mit.edu/6.824/2020/papers/raft-faq.txt) [Part2](http://nil.csail.mit.edu/6.824/2020/papers/raft2-faq.txt)
 ## Raft Basics
 
-**Raft decomposes the consensus problem into three relatively independent subproblems**
-- Leader Election
-- Log replication
-- Safety
+Raft decomposes the consensus problem into three relatively independent subproblems  
+
+1. Leader Election
+2. Log replication
+3. Safety
 
 - **Properties**
   - **Election Safety**: at most one leader can be elected in a given term.
@@ -24,7 +25,7 @@ MIT FAQ [Part1](http://nil.csail.mit.edu/6.824/2020/papers/raft-faq.txt) [Part2]
   <img src="images/figure5.png" width="400" /> 
 </p>
 
-## Leader Election
+## 1. Leader Election
 
 1. When servers start up, they begin as followers
 2. Leader sends periodic heartbeats (AppendEntries RPC with no log entries) to all followers to maintain authority.
@@ -35,27 +36,27 @@ MIT FAQ [Part1](http://nil.csail.mit.edu/6.824/2020/papers/raft-faq.txt) [Part2]
 7. While waiting for votes, a candidate may receive an AppendEntries RPC from another server claiming to be leader. If its term is larger or equal than itself's, the candidate recognizes the leader as legit and returns to follower state
 8. Case : No one wins -> after timeout, new election (150ms - 300ms) - Raft uses randomized election timeouts to ensure that split votes are rare.
 
-## Log Replication
+## 2. Log Replication
 
-### Steps
+### I. Steps
 1. Leader appends log entry to its own log
 2. Send AppendEntry to every server
 3. When the entry has been safely replicated (as described below), the leader applies the entry to its state machine and returns the result of that execution to the client.
 
-### Commit 
+### II. Commit 
 1. A log entry is committed once the leader that created the entry has replicated it on a majority of the servers
    1. Raft guarantees that committed entries are durable and will eventually be executed by all of the available state machines
    2. This also commits all preceding entries in the leader's log, including entries created by previous leaders
 2. Leader keep tracks of the highest index it knows to be committed, and it includes that index in future AppendEntries RPCs. Once a follower learns that a log entry is committed, it applies the entry to its local state machine.
 
-### Inconsistency Handling
+### III. Inconsistency Handling
 1. Leader maintains a `nextIndex` fields for each follower.
 2. It initializes `nextIndex` values to the index just after the last one in its log.
 5. If follower's log is inconsistent with the leader's, the AppendEntries RPC consistency check will fail in the next AppendEntries RPC. 
 6. After a rejection, the leader decrements nextIndex and retries the AppendEntries RPC 
 
 
-##  Safety
+##  3. Safety
 
 - Ensure each state machine executes same commands in the same order
   
@@ -73,7 +74,9 @@ MIT FAQ [Part1](http://nil.csail.mit.edu/6.824/2020/papers/raft-faq.txt) [Part2]
 
 1. Never commits log entries from previous terms by counting replicas.
 2. Only log entries from the leader's current term are committed by counting replicas
-3. Once an entry from the current term has been committed in this way, then all prior entries are committed indirectly because of the Log Matching Property.  
+3. Once an entry from the current term has been committed in this way, then all prior entries are committed indirectly because of the Log Matching Property.
+
+
 ## Log Compaction
 
 ### InstallSnapshot RPC
