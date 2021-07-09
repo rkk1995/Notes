@@ -25,7 +25,20 @@ This article mainly summarizes the chain replication, the principle of **CRAQ**,
 
 Chain replication achieves **strong consistency**: Since all read operations are performed at the tail, and all write operations are committed at the tail, the chain tail can simply apply a total sequence to all operations.
 
-The simple topology of chain replication makes write operations less expensive than other protocols that provide strong consistency. For example, in *Raft*, *leader* needs to send each write operation to all *follower*, but in *CRAQ*, *head* only needs to send each write operation once; and in *Raft** The leader* needs to handle read and write operations, while the *head* in *CRAQ* only needs to handle write operations.
+**Tradeoffs vs Raft**
+
+Both CRAQ and Raft/Paxos are replicated state machines. They can be used to replicate any service that can be fit into a state machine mold (basically, processes a stream of requests one at a time). One application for Raft/Paxos is object storage.
+
+CR and CRAQ are likely to be faster than protocols like Raft that provide *strong consistency* because the CR head does less work than the Raft leader: 
+
+- the CR head sends writes to just one replica, while the Raft leader must send all operations to all followers. 
+- CR has a performance advantage for reads as well, since it serves them from the tail (not the head), while the Raft leader must serve all client requests.
+
+However, Raft/Paxos and CR/CRAQ differ significantly in their failure properties. 
+
+- Raft (and Paxos and ZooKeeper) can continue operating (with no pauses at all) even if a minority of nodes are crashed, slow, unreliable, or partitioned. 
+- A CRAQ or CR chain must stop if something like that goes wrong, and wait for a configuration manager to decide how to proceed. 
+- On the other hand the post-failure situation is significantly simpler in CR/CRAQ; recall Figures 7 and 8 in the Raft paper.
 
 **Failure recovery** for chain replication:
 
@@ -46,7 +59,7 @@ The simple topology of chain replication makes write operations less expensive t
 
 ### 2.1 CRAQ Principles
 
-**CRAQ** is an improvement of chain replication, which allows any node in the chain to perform read operations:
+**CRAQ** is an improvement of chain replication which allows any node in the chain to perform read operations:
 
 - *CRAQ* Each node can store multiple versions of an object, and each version contains a monotonically increasing version number and an additional attribute (identifying `clean` or `dirty`)
 
@@ -73,7 +86,7 @@ For read operations, *CRAQ* supports three consistency models:
 - **Eventual consistency**: Allow nodes to return uncommitted new data, that is, allow *client* to read inconsistent object versions from different nodes. But for a *client*, since it establishes a session with the node, its read operation is guaranteed to be monotonous and consistent.
 - **Eventual consistency with maximum inconsistency boundary**: Nodes are allowed to return uncommitted new data, but there is a limit of inconsistency. This limit can be based on version or time. For example, it is allowed to return newly written but uncommitted data within a period of time.
 
-### 3.1 ZooKeeper Coordination Service
+### 2.4 ZooKeeper Coordination Service
 
 If the network connection between two adjacent nodes is disconnected, the subsequent node will want to become the head node, which will result in two head nodes.
 
@@ -81,4 +94,38 @@ If the network connection between two adjacent nodes is disconnected, the subseq
 
 Through the use of Zookeper *watch flags*, CRAQ nodes are guaranteed to receive a notification when nodes are added to or removed from a group. Similarly, a node can be notified when metadata in which it has expressed interest changes.
 
-During initialization, a CRAQ node creates an ephemeral file in `/nodes/dc_name/node_id`. CRAQ nodes can query /nodes/dc_name to determine the membership list for its datacenter, but instead of having to periodically check the list for changes, ZooKeeper provides processes with the ability to create a watch on a file. A CRAQ node, after creating an ephemeral file to notify other nodes it has joined the system, creates a watch on the children list of `/nodes/dc_name`, thereby guaranteeing that it receives a notification when a node is added or removed.
+During initialization, a CRAQ node creates an ephemeral file in `/nodes/dc_name/node_id`. CRAQ nodes can query `/nodes/dc_name` to determine the membership list for its datacenter, but instead of having to periodically check the list for changes, ZooKeeper provides processes with the ability to create a watch on a file. A CRAQ node, after creating an ephemeral file to notify other nodes it has joined the system, creates a watch on the children list of `/nodes/dc_name`, thereby guaranteeing that it receives a notification when a node is added or removed.
+
+***
+
+## 3.1 Alternate Approaches To Improving Chain Replication
+
+A data center will probably have lots of distinct CR chains, each serving a
+fraction (shard) of the objects. Suppose you have three servers (S1,
+S2, and S3) and three chains (C1, C2, C3). Then you can have the three
+chains be:
+
+```
+  C1: S1 S2 S3
+  C2: S2 S3 S1
+  C3: S3 S1 S2
+```
+Now, assuming activity on the three chains is roughly equal, the load on
+the three servers will also be roughly equal. In particular the load of
+serving client requests (head and tail) will be roughly equally divided
+among the three servers.
+
+This is a pretty reasonable arrangement; **CRAQ is only better if it
+turns out that some chains see more load than others**.
+
+***
+
+## 4.1 Summary
+
+In Chain Replication, only the head and tail directly serve client
+requests; the other replicas help fault tolerance but not performance.
+Since the load on the head and tail is thus likely to be higher than
+the load on intermediate nodes, you could get into a situation where
+performance is bottlenecked by head/tail, yet there is plenty of idle
+CPU available in the intermediate nodes. CRAQ exploits that idle CPU
+by moving the read work to them.
