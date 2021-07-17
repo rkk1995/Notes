@@ -14,12 +14,17 @@ theme:
     - search.suggest
     - navigation.top
 
+  font:
+    text: Roboto
   feature:
     tabs: true
   palette:
     primary: 'blue'
     accent: 'red'
     
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/headingNumbers.css
 
 extra_javascript:
     - 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'
@@ -32,22 +37,24 @@ markdown_extensions:
     - toc:
         toc_depth: 0
     - mdx_truly_sane_lists
-    - pymdownx.superfences
-    - pymdownx.tabbed
 
 pages:
     - Home: 'index.md'
     - Papers:
-      - Infrastructure:
-        - Storage:
-          - gfs: 'gfs/gfs.md'
-          - tao: 'tao/tao.md'
-          - craq: 'craq/craq.md'
-        - Compute:
-          - mapreduce: 'mapreduce/mapreduce.md'
-        - Cluster Management:
-          - raft : 'raft/raft.md'
-          - zookeeper : 'zookeeper/zookeeper.md'
+      # - Infrastructure:
+      - Storage:
+        - aurora: 'aurora/aurora.md'
+        - gfs: 'gfs/gfs.md'
+        - tao: 'tao/tao.md'
+        - craq: 'craq/craq.md'
+        - frangipani: 'frangipani/frangipani.md'
+        - spanner: 'spanner/spanner.md'
+      - Compute:
+        - mapreduce: 'mapreduce/mapreduce.md'
+        - distributed transactions : 'distributedTransactions/distributedTransactions.md'
+      - Cluster Management:
+        - raft : 'raft/raft.md'
+        - zookeeper : 'zookeeper/zookeeper.md'
 
 extra:
   social:

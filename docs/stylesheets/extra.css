@@ -1,0 +1,34 @@
+.md-typeset h1, .md-typeset h2, .md-typeset h3 {
+    margin: 0 0 .5em;
+    color: rgb(61, 138, 38)
+}
+
+.md-typeset ol li, .md-typeset ul li {
+    margin-bottom: 0em;
+}
+
+.md-typeset ul, .md-typeset ol {
+    margin: 1em 0;
+    margin-top: .5em;
+    margin-right: 0px;
+    margin-bottom: 1em;
+    margin-left: 0px;
+}
+
+.md-typeset h2+h3 {
+    margin-top: .5em;
+}
+
+.md-typeset {
+    font-size: .8rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: .5rem;
+}
+
+.md-typeset {
+    line-height: 1.5;
+}
+
