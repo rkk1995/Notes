@@ -4,7 +4,7 @@
 
 MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-aurora.txt) [FAQ](http://nil.csail.mit.edu/6.824/2020/papers/aurora-faq.txt)
 
-## 1. Overview 
+## Overview 
 
 - We believe the central constraint in high throughput data processing has moved from compute and storage to the network.
 - Aurora uses a novel architecture with a fleet of database instances and storage service. Several database functions(redo logging, crash recovery, etc) are offloaded to the storage service, which is like a virtualized segmented redo log (shared-disk architecture).
@@ -18,7 +18,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-aurora.txt) [FAQ](http:/
   - Third, we move some of the most complex and critical functions (backup and redo recovery) from one-time expensive operations in the database engine to continuous asynchronous operations amortized across a large distributed fleet. This yields near-instant crash recovery without checkpointing as well as inexpensive backups that do not interfere with foreground processing. 
 
 
-## 2. HLD of Architecture
+## HLD of Architecture
 
 - To tolerate AZ failure, Aurora replicates each data item 6 ways across 3AZs with 2 copies in each AZ.
 - Database volume is partitioned into 10GB segments. Each segment is replicated 6 times into a Protection Group.
@@ -32,7 +32,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-aurora.txt) [FAQ](http:/
 
 ![architecture](images/figure3.png):
 
-## 3. Durability
+## Durability
 
 - V nodes, read quorum `V_r`, write quorum `V_w`
   * To ensure each write is aware of the most recent write: `V_w > V/2`
@@ -50,9 +50,9 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-aurora.txt) [FAQ](http:/
 
 **Raft** also uses the *quorum* mechanism: *leader* will submit the *log entry* only after most copies are written to the *log entry*, but **Raft** is more powerful: it can handle more complex operations (due to its sequential operations); *leader* can be automatically re-elected when a *split-brain* problem occurs
 
-## 4. The Log Is The Database
+## The Log Is The Database
 
-### 4.1. Database execution process
+### Database execution process
 
 Paper assumes you know how DB works, how it uses storage. Let's describe the execution process of the write operation of a single-machine general transaction database. 
 
@@ -75,7 +75,7 @@ Paper assumes you know how DB works, how it uses storage. Let's describe the exe
   - Replay all committed transactions in *log* (**redo**)
   - Roll back all uncommitted transactions in *log* (**undo**)
 
-### 4.2 Aurora Log Processing
+### Aurora Log Processing
 
 In **Aurora**, **Log Procesing** is pushed down to the storage layer to generate data pages in the background or on-demand. The write data transmitted through the network is only **REDO** logs, thus reducing the network load , And provides considerable performance and durability.
 
