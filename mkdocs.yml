@@ -49,6 +49,7 @@ pages:
         - craq: 'craq/craq.md'
         - frangipani: 'frangipani/frangipani.md'
         - spanner: 'spanner/spanner.md'
+        - farm : 'farm/farm.md'
       - Compute:
         - mapreduce: 'mapreduce/mapreduce.md'
         - distributed transactions : 'distributedTransactions/distributedTransactions.md'
