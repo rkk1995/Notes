@@ -50,6 +50,7 @@ pages:
         - frangipani: 'frangipani/frangipani.md'
         - spanner: 'spanner/spanner.md'
         - farm : 'farm/farm.md'
+        - memcached : 'memcache/memcache.md'
       - Compute:
         - mapreduce: 'mapreduce/mapreduce.md'
         - distributed transactions : 'distributedTransactions/distributedTransactions.md'
