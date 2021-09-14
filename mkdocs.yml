@@ -13,11 +13,10 @@ theme:
     # - navigation.sections
     - navigation.tabs
     - navigation.tracking
+    - navigation.top
     - search.highlight
     - search.share
     - search.suggest
-    - navigation.top
-    - navigation.indexes
 
   font:
     text: Roboto
@@ -26,7 +25,8 @@ theme:
     
 extra_css:
   - stylesheets/extra.css
-  # - stylesheets/headingNumbers.css
+  - stylesheets/extra2.css
+  - stylesheets/headingNumbers.css
 
 extra_javascript:
     - 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'
@@ -62,6 +62,9 @@ pages:
       - Cluster Management:
         - raft : 'papers/raft/raft.md'
         - zookeeper : 'papers/zookeeper/zookeeper.md'
+    - Books:
+      - Designing Data Intensive Applications:
+        - '1. Reliable, Scalable, and Maintainable Applications' : 'books/ddia/chapter1.md'
     - System Design:
       - Concepts:
         - hashtable :

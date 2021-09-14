@@ -4,19 +4,18 @@
 
 MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-aurora.txt) [FAQ](http://nil.csail.mit.edu/6.824/2020/papers/aurora-faq.txt)
 
-## Overview 
+## Overview
 
 - We believe the central constraint in high throughput data processing has moved from compute and storage to the network.
 - Aurora uses a novel architecture with a fleet of database instances and storage service. Several database functions(redo logging, crash recovery, etc) are offloaded to the storage service, which is like a virtualized segmented redo log (shared-disk architecture).
 - **Aurora uses two big ideas**:
   - Quorum writes for better fault-tolerance without too much waiting
   - Storage servers understand how to apply DB's log to data pages, so only need to send (small) log entries, not (big) dirty pages. Sending to many replicas, but not much data.
-    -  The log is the database; any page that the storage system materializes are simply a cache of log application.
+    - The log is the database; any page that the storage system materializes are simply a cache of log application.
 - **Three advantages over traditional approaches to traditional distributed databases**
   - First, by building storage as an independent faulttolerant and self-healing service across multiple data-centers, we protect the database from performance variance and transient or permanent failures at either the networking or storage tiers.
   - Second, by only writing redo log records to storage, we are able to reduce network IOPS by an order of magnitude
-  - Third, we move some of the most complex and critical functions (backup and redo recovery) from one-time expensive operations in the database engine to continuous asynchronous operations amortized across a large distributed fleet. This yields near-instant crash recovery without checkpointing as well as inexpensive backups that do not interfere with foreground processing. 
-
+  - Third, we move some of the most complex and critical functions (backup and redo recovery) from one-time expensive operations in the database engine to continuous asynchronous operations amortized across a large distributed fleet. This yields near-instant crash recovery without checkpointing as well as inexpensive backups that do not interfere with foreground processing.
 
 ## HLD of Architecture
 
@@ -35,8 +34,8 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-aurora.txt) [FAQ](http:/
 ## Durability
 
 - V nodes, read quorum `V_r`, write quorum `V_w`
-  * To ensure each write is aware of the most recent write: `V_w > V/2`
-  * Read = max_version(all nodes), so `V_r + V_w > V`, it can ensure the request must be accepted by a node with most update data. Because each log entry have an index/version, we only pick the date with the most updated log.
+  - To ensure each write is aware of the most recent write: `V_w > V/2`
+  - Read = max_version(all nodes), so `V_r + V_w > V`, it can ensure the request must be accepted by a node with most update data. Because each log entry have an index/version, we only pick the date with the most updated log.
 - AZ (availability zone) level failure tolerance
   - Losing an entire AZ and one additional node (AZ+1) without losing data
   - Losing an entire AZ without impacting the ability to write data
@@ -54,13 +53,13 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-aurora.txt) [FAQ](http:/
 
 ### Database execution process
 
-Paper assumes you know how DB works, how it uses storage. Let's describe the execution process of the write operation of a single-machine general transaction database. 
+Paper assumes you know how DB works, how it uses storage. Let's describe the execution process of the write operation of a single-machine general transaction database.
 
 - The data is stored in the *B-Tree* of the hard disk, and there are cached data pages in the database.
 - Take the transaction `x=x+10` `y=y-10` as an example:
 - First lock `x` and `y`
 - DB server modifies only cached data pages as transaction runs and appends update info to **Write-Ahead Log** (redo log)
-- At this time *log entry* can be expressed as:   
+- At this time *log entry* can be expressed as:
   
     | LSID | TID | Key | old | new | Notes |
     | ---- | ---- | ------ | ---- | ---- | -------------------- |
@@ -68,7 +67,7 @@ Paper assumes you know how DB works, how it uses storage. Let's describe the exe
     | 102 | 7 | y | 750 | 740 | y=y-10 |
     | 103 | 7 | commit | | | transaction finished |
 
-- Release the locks of `x` and `y` after *WAL* is written to the hard disk, and reply to *client* 
+- Release the locks of `x` and `y` after *WAL* is written to the hard disk, and reply to *client*
 - **Log Applicator** acts on the modification of the *log entry* on the before image of the cached data page, which will generate an after image.
   - Delayed writing can optimize performance because the data page is large
 - **Crash Recovery**
