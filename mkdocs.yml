@@ -2,66 +2,74 @@ site_name: RKK1995's notes
 repo_url: https://github.com/rkk1995/Notes
 
 theme:
+  palette:
+    # scheme: slate
+    primary: dark blue
+    accent: red
   name: material
   features:
     - content.tabs.link
     - navigation.instant
-    - navigation.sections
+    # - navigation.sections
     - navigation.tabs
     - navigation.tracking
     - search.highlight
     - search.share
     - search.suggest
     - navigation.top
+    - navigation.indexes
 
   font:
     text: Roboto
-  feature:
-    tabs: true
-  palette:
-    primary: 'blue'
-    accent: 'red'
+
+
     
 extra_css:
   - stylesheets/extra.css
-  - stylesheets/headingNumbers.css
+  # - stylesheets/headingNumbers.css
 
 extra_javascript:
     - 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'
 
 markdown_extensions:
-    - pymdownx.highlight
+    - def_list
+    - pymdownx.highlight:
+        linenums: true
     - pymdownx.superfences
     - mdx_math:
         enable_dollar_delimiter: True
     - toc:
-        toc_depth: 0
+        toc_depth: 3
     - mdx_truly_sane_lists
+    - attr_list
 
 pages:
     - Home: 'index.md'
     - Papers:
-      # - Infrastructure:
       - Storage:
-        - aurora: 'aurora/aurora.md'
-        - gfs: 'gfs/gfs.md'
-        - tao: 'tao/tao.md'
-        - craq: 'craq/craq.md'
-        - frangipani: 'frangipani/frangipani.md'
-        - spanner: 'spanner/spanner.md'
-        - farm : 'farm/farm.md'
-        - memcached : 'memcache/memcache.md'
+        - aurora: 'papers/aurora/aurora.md'
+        - gfs: 'papers/gfs/gfs.md'
+        - tao: 'papers/tao/tao.md'
+        - craq: 'papers/craq/craq.md'
+        - frangipani: 'papers/frangipani/frangipani.md'
+        - spanner: 'papers/spanner/spanner.md'
+        - farm : 'papers/farm/farm.md'
+        - memcached : 'papers/memcache/memcache.md'
+        - dynamo : 'papers/dynamo/dynamo.md'
       - Compute:
-        - mapreduce: 'mapreduce/mapreduce.md'
-        - distributed transactions : 'distributedTransactions/distributedTransactions.md'
+        - mapreduce: 'papers/mapreduce/mapreduce.md'
+        - distributed transactions : 'papers/distributedTransactions/distributedTransactions.md'
       - Cluster Management:
-        - raft : 'raft/raft.md'
-        - zookeeper : 'zookeeper/zookeeper.md'
+        - raft : 'papers/raft/raft.md'
+        - zookeeper : 'papers/zookeeper/zookeeper.md'
+    - System Design:
+      - Concepts:
+        - hashtable :
+          - basics : 'hashtable/hashtable.md'
+
 
 extra:
   social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/0xSasuke
     - icon: fontawesome/solid/paper-plane
       link: mailto:theravindu@gmail.com
   generator: false

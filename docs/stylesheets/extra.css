@@ -1,10 +1,13 @@
 .md-typeset h1, .md-typeset h2, .md-typeset h3 {
     margin: 0 0 .5em;
-    color: rgb(61, 138, 38)
+    /* color: rgb(61, 138, 38) */
 }
 
+dt {
+    font-weight: bold;
+}
 .md-typeset ol li, .md-typeset ul li {
-    margin-bottom: 0em;
+    /* margin-bottom: 0em; */
 }
 
 .md-typeset ul, .md-typeset ol {
@@ -19,8 +22,12 @@
     margin-top: .5em;
 }
 
+
 .md-typeset {
-    font-size: .8rem;
+    font-size: 15px;
+    font-family: Content-font, Roboto, sans-serif;
+    font-weight: 300;
+    line-height: 1.625;
 }
 
 p {
@@ -28,7 +35,20 @@ p {
     margin-bottom: .5rem;
 }
 
-.md-typeset {
-    line-height: 1.5;
-}
+  
+/* 
+body {
+    font-family : 'Content-font, Roboto, sans-serif';
+} */
 
+/* :root > * {
+    --md-code-bg-color: rgb(19, 38, 68);
+    --md-code-fg-color:  rgb(205, 217, 227);
+} */
+
+/* .md-typeset a {
+    color:rgb(255, 55, 55);
+} */
+
+
+h1 { border-bottom: 1px solid black }
