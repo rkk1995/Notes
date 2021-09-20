@@ -14,4 +14,5 @@ jobs:
       - run: pip install mkdocs-material 
       - run: pip install python-markdown-math
       - run: pip install mdx_truly_sane_lists
+      - run: pip install mkdocs-awesome-pages-plugin
       - run: mkdocs gh-deploy --force
