@@ -1,4 +1,6 @@
-# [Object Storage on CRAQ](http://nil.csail.mit.edu/6.824/2020/papers/craq.pdf)
+# CRAQ
+
+[Object Storage on CRAQ](http://nil.csail.mit.edu/6.824/2020/papers/craq.pdf)
 
 *High-throughput chain replication for read-mostly workloads.*
 
@@ -6,7 +8,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-craq.txt) , [FAQ](http:/
 
 ## Introduction
 
-**Chain Replication with Apportioned Queries (CRAQ)** is an improvement to chain replication. It distributes the load on all object copies to greatly improve read throughput while maintaining strong consistency.     
+**Chain Replication with Apportioned Queries (CRAQ)** is an improvement to chain replication. It distributes the load on all object copies to greatly improve read throughput while maintaining strong consistency.
 
 This article mainly summarizes the chain replication, the principle of **CRAQ**, and the consistency model of **CRAQ**.
 
@@ -14,7 +16,7 @@ This article mainly summarizes the chain replication, the principle of **CRAQ**,
 
 **Chain Replication (CR)** is a method of replicating data across multiple nodes:
 
-![](images/figure1.png)
+![](images/craq/figure1.png)
 
 - The nodes form a chain of length *C*
 - The head node of the chain handles all write operations from the client
@@ -29,15 +31,15 @@ Chain replication achieves **strong consistency**: Since all read operations are
 
 Both CRAQ and Raft/Paxos are replicated state machines. They can be used to replicate any service that can be fit into a state machine mold (basically, processes a stream of requests one at a time). One application for Raft/Paxos is object storage.
 
-CR and CRAQ are likely to be faster than protocols like Raft that provide *strong consistency* because the CR head does less work than the Raft leader: 
+CR and CRAQ are likely to be faster than protocols like Raft that provide *strong consistency* because the CR head does less work than the Raft leader:
 
-- the CR head sends writes to just one replica, while the Raft leader must send all operations to all followers. 
+- the CR head sends writes to just one replica, while the Raft leader must send all operations to all followers.
 - CR has a performance advantage for reads as well, since it serves them from the tail (not the head), while the Raft leader must serve all client requests.
 
-However, Raft/Paxos and CR/CRAQ differ significantly in their failure properties. 
+However, Raft/Paxos and CR/CRAQ differ significantly in their failure properties.
 
-- Raft (and Paxos and ZooKeeper) can continue operating (with no pauses at all) even if a minority of nodes are crashed, slow, unreliable, or partitioned. 
-- A CRAQ or CR chain must stop if something like that goes wrong, and wait for a configuration manager to decide how to proceed. 
+- Raft (and Paxos and ZooKeeper) can continue operating (with no pauses at all) even if a minority of nodes are crashed, slow, unreliable, or partitioned.
+- A CRAQ or CR chain must stop if something like that goes wrong, and wait for a configuration manager to decide how to proceed.
 - On the other hand the post-failure situation is significantly simpler in CR/CRAQ; recall Figures 7 and 8 in the Raft paper.
 
 **Failure recovery** for chain replication:
@@ -53,8 +55,8 @@ However, Raft/Paxos and CR/CRAQ differ significantly in their failure properties
 ## CRAQ
 
 <p float="left">
-  <img src="images/figure2.png" width="400" />
-  <img src="images/figure3.png" width="400" /> 
+  <img src="images/craq/figure2.png" width="400" />
+  <img src="images/craq/figure3.png" width="400" />
 </p>
 
 ### CRAQ Principles
@@ -110,6 +112,7 @@ chains be:
   C2: S2 S3 S1
   C3: S3 S1 S2
 ```
+
 Now, assuming activity on the three chains is roughly equal, the load on
 the three servers will also be roughly equal. In particular the load of
 serving client requests (head and tail) will be roughly equally divided

@@ -1,4 +1,6 @@
-# [Frangipani: A Scalable Distributed File System](http://nil.csail.mit.edu/6.824/2020/papers/thekkath-frangipani.pdf)i
+# Frangipani
+
+[Frangipani: A Scalable Distributed File System](http://nil.csail.mit.edu/6.824/2020/papers/thekkath-frangipani.pdf)i
 
 *1990s scalable distributed file system that manages a collection of disks on multiple machines as a single shared pool of storage.*
 
@@ -17,11 +19,11 @@ Overall design:
 
 - A decentralized **file system**, cache for performance
 - Petal: block storage service;
-  + what is stored: just like an ordinary hard disk file system
-    * directores
-    * i-node
-    * file content blocks
-    * free bitmaps
+  - what is stored: just like an ordinary hard disk file system
+    - directores
+    - i-node
+    - file content blocks
+    - free bitmaps
 
 Scenario 1:
 WS2(work station) run `ls /` or `cat /grades`
@@ -102,26 +104,26 @@ Transactional file-system operations:
 - WS acquires locks on all file system data that it will modify
 - performs operation with all locks held
 - only releases when finished
-  + no other WS can see partially-completed operations
+  - no other WS can see partially-completed operations
 
 ## Solution for Scenario 3: Crash Recovery (write-ahead logging)
 
 What if a Frangipani workstation dies while holding locks?
 
-+ eg: dead WS had modified data in its cache
-+ eg: dead WS had started to write back modified data to Petal
+- eg: dead WS had modified data in its cache
+- eg: dead WS had started to write back modified data to Petal
 
 Solution: Before writing any of op's cached blocks to Petal, first write log to Petal
 
-+ Log entry stored in Petal for recovery
-+ Before writing any of op's cached blocks to Petal, first write log to Petal
-+ if a crashed workstation has done some Petal writes for an operation, not not all. the writes can be completed from the log in Petal
+- Log entry stored in Petal for recovery
+- Before writing any of op's cached blocks to Petal, first write log to Petal
+- if a crashed workstation has done some Petal writes for an operation, not not all. the writes can be completed from the log in Petal
 
 What an log entry include:
 
-+ **note**: it is just for file metadata, not for file data
-+ log sequence number
-+ array of updates: block #, new version #, addr, new bytes
+- **note**: it is just for file metadata, not for file data
+- log sequence number
+- array of updates: block #, new version #, addr, new bytes
 
 When WS receive lock revoke:
 

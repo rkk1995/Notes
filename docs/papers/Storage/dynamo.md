@@ -1,4 +1,6 @@
-# Dynamo: Amazon’s Highly Available Key-value Store
+# Dynamo
+
+Dynamo: Amazon’s Highly Available Key-value Store
 
 *A highly available key-value storage system for "always-on" experience.*
 
@@ -13,7 +15,7 @@
 - Unlike traditional commercial systems putting importance on consistency, Dynamo sacrifices consistency under certain failure scenarios for availability.
 - Dynamo uses a synthesis of well known techniques to achieve scalability and availability:
 
-![summary](images/summary.png)
+![summary](images/dynamo/summary.png)
 
 ## System Architecture
 
@@ -26,7 +28,7 @@
 
 ## Consistent Hashing
 
-![figure2](images/figure2.png)
+![figure2](images/dynamo/figure2.png)
 
 - Dynamo’s partitioning scheme relies on consistent hashing to distribute the load across multiple storage hosts. 
 - In consistent hashing, the output range of a hash function is treated as a fixed circular space or “ring”

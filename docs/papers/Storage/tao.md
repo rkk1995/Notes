@@ -1,4 +1,6 @@
-# TAO: Facebook’s Distributed Data Store for the Social Graph
+# TAO
+
+TAO: Facebook’s Distributed Data Store for the Social Graph
 
 *A geographically distributed data store that provides efficient and timely access to the social graph.*
 
@@ -49,7 +51,7 @@ Association List: (id1, atype) -> [a1, a2, ..., an]
 - Leaders query the local region's database regardless of whether master or slave. Writes are forwarded by the local leader to the leader in the master region.
 - Master region is controlled separately for each shard and is automatically switched to recover from database failure. We prefer to locate all of the master databases in a single region, otherwise inverse write may introduce inter-region latency.
 
-![architecture](images/architecture.jpg)
+![architecture](images/tao/architecture.jpg)
 
 ## Consistency
 

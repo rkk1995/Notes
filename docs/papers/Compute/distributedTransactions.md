@@ -1,11 +1,12 @@
-# [Distributed Transactions](https://ocw.mit.edu/resources/res-6-004-principles-of-computer-system-design-an-introduction-spring-2009/online-textbook/)
+# Distributed Transactions
+
+[Distributed Transactions](https://ocw.mit.edu/resources/res-6-004-principles-of-computer-system-design-an-introduction-spring-2009/online-textbook/)
 
 MIT [Notes](https://pdos.csail.mit.edu/6.824/notes/l-2pc.txt) [FAQ](http://nil.csail.mit.edu/6.824/2020/papers/chapter9-faq.txt)
   
 ## Background
 
 Problem: lots of data records, sharded on multiple servers, lots of clients
-
 
 Correct behavior of a xactions: ACID
 
@@ -15,14 +16,17 @@ Correct behavior of a xactions: ACID
 - D: Durability, committed writes are permanent
 
 Distributed Transactions have two big components:
+
 - concurrency control (to provide isolation/serializability)
 - atomic commit (to provide atomicity despite failure)
   
 ### Serializable
+
 - Definition : there exists some serial order of those concurrent transactions that would, if followed, lead to the same ending state.*
 - an easy model for programmers: they can write complex transactions while ignoring concurrency
 - It allows parallel execution of transactions on different records
 - example transactions
+
 ```
   x and y are bank balances -- records in database tables
   x and y are on different servers (maybe at different banks)
@@ -39,15 +43,16 @@ Distributed Transactions have two big components:
 ```
 
 - execute concurrent transactions T1 and T2
+
 ```
 T1; T2 : x=11 y=9 "11,9"
 T2; T1 : x=11 y=9 "10,10"
 the results for the two differ; either is OK
-```                 
+```
 
 ## Concurrency Control
 
-Distributed transactions have two big components:   
+Distributed transactions have two big components:
 
 - concurrency control (to provide isolation/serializability)
 - atomic commit (to provide atomicity despite failure)
@@ -55,13 +60,13 @@ Distributed transactions have two big components:
 Two classes of concurrency control for transactions:  
 
 - pessimistic:
-  + lock records before use
-  + conflicts cause delays (waiting for locks)
+  - lock records before use
+  - conflicts cause delays (waiting for locks)
 - optimistic:
-  + use records without locking
-  + commit checks if reads/writes were serializable
-  + conflict causes abort+retry
-  + called Optimistic Concurrency Control (OCC)
+  - use records without locking
+  - commit checks if reads/writes were serializable
+  - conflict causes abort+retry
+  - called Optimistic Concurrency Control (OCC)
 - pessimistic is faster if conflicts are frequent
 - optimistic is faster if conflicts are rare
 
@@ -73,13 +78,13 @@ Two classes of concurrency control for transactions:
 - a transaction must hold its locks until *after* commit or abort
 - can result in deadlock. Systems must be smart enough to detect and abort.
 
-
 ## Atomic Commit - Two Phase Commit
+
 A bunch of computers are cooperating on some task, each computer has a different role. We want to ensure atomicity: all execute, or none execute.
 
 Challenges : failure and performance
 
-### Process:
+### Process
 
 - Data is sharded among multiple servers
 - Transactions run on "transaction coordinators" (TCs)
@@ -109,39 +114,37 @@ TC             A           B
 ```
 
 Why is this correct so far?
-- Neither A or B can commit unless they both agreed.
 
+- Neither A or B can commit unless they both agreed.
 
 ### Failure tolerance
 
 - What if B crashes and restarts?
-  + If B sent YES before crash, B must remember (since it wrote to log despite crash)! Because A might have received a COMMIT and committed. So B must be able to commit (or not) even after a reboot.
+  - If B sent YES before crash, B must remember (since it wrote to log despite crash)! Because A might have received a COMMIT and committed. So B must be able to commit (or not) even after a reboot.
 - What if TC crashes and restarts?
-  + If TC might have sent COMMIT before crash, TC must remember! Since one worker may already have committed.
-    * write log to disk before sending COMMIT msgs.
-    * repeat COMMIT if it crashes and reboots, or if a participants asks.
+  - If TC might have sent COMMIT before crash, TC must remember! Since one worker may already have committed.
+    - write log to disk before sending COMMIT msgs.
+    - repeat COMMIT if it crashes and reboots, or if a participants asks.
 - What if TC never gets a YES/NO from B?
-  + Perhaps B crashed and didn't recover; perhaps network is broken.
-    * TC can time out, and abort (since has not sent any COMMIT msgs).
+  - Perhaps B crashed and didn't recover; perhaps network is broken.
+    - TC can time out, and abort (since has not sent any COMMIT msgs).
 - What if B times out or crashes while waiting for PREPARE from TC?
-  + B has not yet responded to PREPARE, so TC can't have decided commit
-    * B can unilaterally abort, and release locks
-    * respond NO to future PREPARE
+  - B has not yet responded to PREPARE, so TC can't have decided commit
+    - B can unilaterally abort, and release locks
+    - respond NO to future PREPARE
 - What if B replied YES to PREPARE, but doesn't receive COMMIT or ABORT?
-  + B cannot decide to abort it, because TC might have gotten YES from both, and sent out COMMIT to A, but crashed before sending to B.
-    * cannot do anything, just wait for TC came back
-
+  - B cannot decide to abort it, because TC might have gotten YES from both, and sent out COMMIT to A, but crashed before sending to B.
+    - cannot do anything, just wait for TC came back
 
 ### Two-phase commit perspective
 
-+ Used in sharded DBs when a transaction uses data on multiple shards
-+ Bad reputation - Thus usually used only in a single small domain
-  + slow: multiple rounds of messages
-  + slow: disk writes
-  + locks are held over the prepare/commit exchanges; blocks other xactions
-  + TC crash can cause indefinite blocking, with locks held
-+ TC crash can cause indefinite blocking, with locks held
-
+- Used in sharded DBs when a transaction uses data on multiple shards
+- Bad reputation - Thus usually used only in a single small domain
+  - slow: multiple rounds of messages
+  - slow: disk writes
+  - locks are held over the prepare/commit exchanges; blocks other xactions
+  - TC crash can cause indefinite blocking, with locks held
+- TC crash can cause indefinite blocking, with locks held
 
 ### Raft Comparison
 

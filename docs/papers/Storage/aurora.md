@@ -1,4 +1,6 @@
-# [Amazon Aurora: Design Considerations for High Throughput Cloud-Native Relational Databases](http://nil.csail.mit.edu/6.824/2020/papers/aurora.pdf)
+# Aurora
+
+[Amazon Aurora: Design Considerations for High Throughput Cloud-Native Relational Databases](http://nil.csail.mit.edu/6.824/2020/papers/aurora.pdf)
 
 *A cloud-native relational database service for OLTP workloads.*
 
@@ -29,7 +31,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-aurora.txt) [FAQ](http:/
   - Consistency: each transaction is broken up to mini-transactions, and the final log record in a mini-transaction is a consistency point.
 - Normally  read quorum is not needed since the database feeds log records to storage nodes and tracks progress.
 
-![architecture](images/figure3.png):
+![architecture](images/aurora/figure3.png):
 
 ## Durability
 
@@ -79,13 +81,13 @@ Paper assumes you know how DB works, how it uses storage. Let's describe the exe
 In **Aurora**, **Log Procesing** is pushed down to the storage layer to generate data pages in the background or on-demand. The write data transmitted through the network is only **REDO** logs, thus reducing the network load , And provides considerable performance and durability.
 
 <p float="left">
-  <img src="images/figure1.png" width="400" />
-  <img src="images/figure2.png" width="400" />
+  <img src="images/aurora/figure1.png" width="400" />
+  <img src="images/aurora/figure2.png" width="400" />
 </p>
 
 <p float="left">
-  <img src="images/figure4.png" width="400" />
-  <img src="images/figure5.png" width="400" />
+  <img src="images/aurora/figure4.png" width="400" />
+  <img src="images/aurora/figure5.png" width="400" />
 </p>
 ## Extra Notes
 

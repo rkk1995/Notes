@@ -1,4 +1,6 @@
-# [ZooKeeper: Wait-free coordination for Internet-scale systems](http://nil.csail.mit.edu/6.824/2020/papers/zookeeper.pdf)
+# ZooKeeper 
+
+[ZooKeeper: Wait-free coordination for Internet-scale systems](http://nil.csail.mit.edu/6.824/2020/papers/zookeeper.pdf)
 
 *A service for coordinating processes of distributed applications.*
 
@@ -26,7 +28,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
   - sequential (when a file is created with a given name, ZooKeeper appends a number. ZooKeeper guarantees to never repeat a number if several clients try to write.)
 - znodes are not for general data storage. Instead, they are used to store metadata or configuration of applications(typically 1MB).
 
-![znode](images/znode.jpg)
+![znode](zookeeper/znode.jpg)
 
 ### Client API
 
@@ -46,7 +48,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 
 
 ## Implementation
-![components](images/components.jpg)
+![components](zookeeper/components.jpg)
 
 - ZooKeeper service comprises an ensemble of servers that each has replicated ZooKeeper data. One is leader and the rest are followers.
 - Read requests are handled locally at each server, so it may return stale data since some committed transactions are not applied on that server yet.

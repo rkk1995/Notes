@@ -1,28 +1,32 @@
-# [The Google File System](http://nil.csail.mit.edu/6.824/2020/papers/gfs.pdf)
+# GFS
+
+[The Google File System](http://nil.csail.mit.edu/6.824/2020/papers/gfs.pdf)
 
 *A scalable distributed file system for large distributed data-intensive applications.*
+
 ## Introduction
 
 - The design is driven by key observations different from earlier file system assumptions: frequent component failures, huge files (GB+), most files are mutated by appending rather than overwriting.
 - GFS provides a POSIX-like file system interface. It supports snapshot and record append operations(useful for multi-way merge and consumer/producer).
 
-
 ## Architecture
+
 <center> Figure 1 </center>
-<center> ![architecture](images/architecture.png) </center>
+<center> ![architecture](images/gfs/architecture.png) </center>
 
 - A GFS cluster consists of a single master and multiple chunkservers and is accessed by multiple clients.
 - Files are divided into fixed-sized chunks(64 MB, larger than typical) and each chunk has an immutable and globally unique id. Chunkservers store chunks as local Linux files and the master maintains all file system metadata.
 - The master stores in memory three majors types of metadata: the file and chunk namespaces, the mapping from files to chunks and the locations of each chunk's replicas. The first two are also persisted in a replicated operation log(with checkpoints); the last one is polled from chunkservers at start time and kept up-to-date via heartbeat messages.
 - **Reads**
   1. Using the fixed chunk size, the client translates the file name and byte offset into a chunk index within the file.
-  2. Sends the master a request containing the file name and chunk index. 
-  3. The master replies with the corresponding chunk handle and locations of the replicas. 
+  2. Sends the master a request containing the file name and chunk index.
+  3. The master replies with the corresponding chunk handle and locations of the replicas.
   4. The client caches this information using the file name and chunk index as the key.
   5. The client then sends a request to one of the replicas,most likely the closest one. The request specifies the chunk handle and a byte range within that chunk. Further reads
 of the same chunk require no more client-master interaction until the cached information expires.
 
 ### Chunk Size
+
 - Key design parameters, Large chunk chosen : 64MB
 - **Advantages**
   - Reduces clients' need to interact with the master
@@ -40,7 +44,7 @@ of the same chunk require no more client-master interaction until the cached inf
 - Only keeps latest complete checkpoint and subsequent log files.
   
 <center> Figure 2 </center>
-<center> ![architecture](images/architecture2.png) </center>
+<center> ![architecture](images/gfs/architecture2.png) </center>
 
 ## System Interactions
 
@@ -75,10 +79,10 @@ of the same chunk require no more client-master interaction until the cached inf
 - **Data Integrity**
   - Breaks each 64 MB chunk into blocks of 64 KB, each with its own 32-bit checksum stored in memory and written to the log.
   - For reads, the chunkserver verifies the checksum of datablocks that overlap the read range before returning any data to the requester
-    - If a block does not match the recorded checksum, the chunkserver returns an error and and reports the mismatch to the master. 
-    - In response, the requestor will read from other replicas, while the master will clone the chunk from another replica. 
+    - If a block does not match the recorded checksum, the chunkserver returns an error and and reports the mismatch to the master.
+    - In response, the requestor will read from other replicas, while the master will clone the chunk from another replica.
     - After a valid new replica is in place, the master instructs the chunkserver that reported the mismatch to delete its replica.
-     
+
 ## Summary
 
 - **Good Ideas**

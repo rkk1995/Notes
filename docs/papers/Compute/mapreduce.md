@@ -1,4 +1,6 @@
-#[MapReduce: Simplified Data Processing on Large Clusters](http://nil.csail.mit.edu/6.824/2020/papers/mapreduce.pdf)
+# MapReduce
+
+[MapReduce: Simplified Data Processing on Large Clusters](http://nil.csail.mit.edu/6.824/2020/papers/mapreduce.pdf)
 
 *A programming model and an associated implementation for processing and generating large data sets.*
 
@@ -13,7 +15,7 @@ map (k1,v1) → list(k2,v2)
 reduce (k2,list(v2)) → list(v2)
 ```
 
-<center>![execution](images/execution.jpg)</center>
+<center>![execution](mapreduce/execution.jpg)</center>
 
 ## Implementation
 

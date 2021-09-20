@@ -1,8 +1,11 @@
-# [Spanner: Google’s Globally-Distributed Database](http://nil.csail.mit.edu/6.824/2020/papers/spanner.pdf)
+# Spanner
+
+[Spanner: Google’s Globally-Distributed Database](http://nil.csail.mit.edu/6.824/2020/papers/spanner.pdf)
 
 *Google’s scalable, multi-version, globally-distributed and synchronously-replicated database.*
 
 MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-spanner.txt) [FAQ](http://nil.csail.mit.edu/6.824/2020/papers/spanner-faq.txt)
+
 ## Introduction
 
 - Bigtable is hard to use for applications need complex, evolving schemas or strong consistency in wide-area replication, so Spanner evolved into a temporal, multi-version, semi-relational database, providing distributed transactions over geographically distributed data.
@@ -12,6 +15,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-spanner.txt) [FAQ](http:
 - Strong consistency (External consistency / linearizability / serializability)
 
 ## Basic Organization
+
 ```
 Datacenter A:
   "clients" are web servers e.g. for gmail
@@ -26,6 +30,7 @@ Datacenter B:
 Datacenter C:
   same setup
 ```
+
 ### Replication
 
 - Replication managed by Paxos; one Paxos group per shard.
@@ -45,17 +50,16 @@ Datacenter C:
 - A transaction may involve multiple shards -> multiple Paxos groups.
 - Transactions that read multiple records must be serializable. It means it need the assistance from Xaction Coordinator.
 
-
 ## System Architecture
-![overview](images/overview.png)
+
+![overview](images/spanner/overview.png)
 
 - A Spanner zone has one zonemaster and many spanservers. The former assigns data to spanservers; the latter serve data to clients.
 - A spanserver is responsible for 100~1000 tablets. Each tablet contains a bag of mappings $(key:string, timestamp:int64)\rightarrow string$ from multiple partitions of the row space(data colocation). A tablet's state is stored in a set of B-tree like files and a write-ahead log on Colossus.
 - A spanserver implements a Paxos state machine on each tablet; each Paxos state machine stores metadata and log in corresponding tablet.
 - At every replica that is a leader, each spanserver implements a lock table and a transaction table to support distributed transactions(two-phase commit on mutliple Paxos groups).
 
-![spanserver](images/spanserver.png)
-
+![spanserver](images/spanner/spanserver.png)
 
 ## TrueTime
 
@@ -75,19 +79,21 @@ Datacenter C:
 - For RW transactions, the coordinator assigns a commit timestamp $S_i$ no later than $TT.now().latest$ computed after receiving the commit request, and waits until $TT.after(S_i)$ is true to apply the commit("commit wait").
   - Sets the commit time to $TT.now().latest$ since TT.now() returns a range time is between, exclusive so $latest$ is guaranteed to not have occured.
   - Keeps calling $TT.now()$ until $TT.now().earliest()$ is greater than above commit time.
-- For RO transactions and snapshot reads, every replica tracks $t_{safe}$ for the maximum at which the replica is up-to-date, which depends on the Paxos state machine and if there are prepared but not committed transactions. 
-
+- For RO transactions and snapshot reads, every replica tracks $t_{safe}$ for the maximum at which the replica is up-to-date, which depends on the Paxos state machine and if there are prepared but not committed transactions.
 
 ## R/W Transactions
+
 ```
 BEGIN
   x = x + 1
   y = y - 1
 END
 ```
+
 We don't want any read or write of x or y sneaking between our two ops. After commit, all reads should see our updates.
 
-### Two-phase commit (2pc) with Paxos-replicated participants.
+### Two-phase commit (2pc) with Paxos-replicated participants
+
 ```
 Client picks a unique transaction id (TID).
 Client sends each read to Paxos leader of relevant shard (2.1).
@@ -144,14 +150,15 @@ Achieves this through **Snapshot Isolation**
 Obviously we can't synchronize all computer clocks, so **TrueTime** is used to give bounds of certainty.
 
 ## Perspective
+
 - Snapshot Isolation gives you **serializable** r/o transactions.
-  + Timestamps set an order.
-  + Snapshot versions (and safe time) implement consistent reads at a timestamp.
-  + Xaction sees all writes from lower-TS xactions, none from higher.
-  + Any number will do for TS if you don't care about external consistency.
+  - Timestamps set an order.
+  - Snapshot versions (and safe time) implement consistent reads at a timestamp.
+  - Xaction sees all writes from lower-TS xactions, none from higher.
+  - Any number will do for TS if you don't care about external consistency.
 - Synchronized timestamps yield **external consistency**.
-  + Even among transactions at different data centers.
-  + Even though reading from local replicas that might lag.
+  - Even among transactions at different data centers.
+  - Even though reading from local replicas that might lag.
 
 Why is all this useful?
 

@@ -21,6 +21,8 @@ theme:
   font:
     text: Roboto
 
+plugins:
+  - awesome-pages
 
     
 extra_css:
@@ -39,37 +41,9 @@ markdown_extensions:
     - mdx_math:
         enable_dollar_delimiter: True
     - toc:
-        toc_depth: 3
+        toc_depth: 4
     - mdx_truly_sane_lists
     - attr_list
-
-pages:
-    - Home: 'index.md'
-    - Papers:
-      - Storage:
-        - aurora: 'papers/aurora/aurora.md'
-        - gfs: 'papers/gfs/gfs.md'
-        - tao: 'papers/tao/tao.md'
-        - craq: 'papers/craq/craq.md'
-        - frangipani: 'papers/frangipani/frangipani.md'
-        - spanner: 'papers/spanner/spanner.md'
-        - farm : 'papers/farm/farm.md'
-        - memcached : 'papers/memcache/memcache.md'
-        - dynamo : 'papers/dynamo/dynamo.md'
-      - Compute:
-        - mapreduce: 'papers/mapreduce/mapreduce.md'
-        - distributed transactions : 'papers/distributedTransactions/distributedTransactions.md'
-      - Cluster Management:
-        - raft : 'papers/raft/raft.md'
-        - zookeeper : 'papers/zookeeper/zookeeper.md'
-    - Books:
-      - Designing Data Intensive Applications:
-        - '1. Reliable, Scalable, and Maintainable Applications' : 'books/ddia/chapter1.md'
-        - '2: Data Models and Query Languages' : 'books/ddia/chapter2.md'
-    - System Design:
-      - Concepts:
-        - hashtable :
-          - basics : 'hashtable/hashtable.md'
 
 
 extra:
