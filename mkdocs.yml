@@ -23,7 +23,8 @@ theme:
 
 plugins:
   - awesome-pages
-
+  - section-index-optional:
+      index_file: index.md
     
 extra_css:
   - stylesheets/extra.css
