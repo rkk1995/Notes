@@ -1,4 +1,4 @@
-# Partitioning
+# 6. Partitioning
 
 Replication, for very large datasets or very high query throughput is not sufficient, we need to break the data up into _partitions_ (_sharding_).
 
