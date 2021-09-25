@@ -54,10 +54,8 @@ However, Raft/Paxos and CR/CRAQ differ significantly in their failure properties
 
 ## CRAQ
 
-<p float="left">
-  <img src="images/craq/figure2.png" width="400" />
-  <img src="images/craq/figure3.png" width="400" />
-</p>
+![Figure 2](images/craq/figure2.png)
+![Figure 3](images/craq/figure3.png)
 
 ### CRAQ Principles
 
