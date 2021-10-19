@@ -1,4 +1,5 @@
 .md-typeset h1, .md-typeset h2, .md-typeset h3 {
+    font-weight: bold;
     margin: 0 0 .5em;
     color: rgb(36, 42, 49);
     /* font-weight: 500; */
@@ -47,4 +48,9 @@ body {
 
 h1 { 
     border-bottom: 1px solid black;
+}
+
+
+dt {
+    font-weight: bold;
 }

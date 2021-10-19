@@ -4,13 +4,13 @@ repo_url: https://github.com/rkk1995/Notes
 theme:
   palette:
     # scheme: slate
-    primary: dark blue
+    primary: indigo
     accent: red
   name: material
   features:
     - content.tabs.link
     - navigation.instant
-    # - navigation.sections
+    - navigation.sections
     - navigation.tabs
     - navigation.tracking
     - navigation.top
@@ -28,8 +28,7 @@ plugins:
     
 extra_css:
   - stylesheets/extra.css
-  - stylesheets/extra2.css
-  - stylesheets/headingNumbers.css
+  # - stylesheets/headingNumbers.css
 
 extra_javascript:
     - 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'
