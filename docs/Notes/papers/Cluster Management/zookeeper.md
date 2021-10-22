@@ -1,6 +1,8 @@
-# ZooKeeper 
+# ZooKeeper
 
 [ZooKeeper: Wait-free coordination for Internet-scale systems](http://nil.csail.mit.edu/6.824/2020/papers/zookeeper.pdf)
+
+<https://dzone.com/articles/zookeeper-in-15-minutes>
 
 *A service for coordinating processes of distributed applications.*
 
@@ -14,7 +16,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 - Zookeeper guarantees :  
   - 1) linearizable writes
   - 2) FIFO client ordering for all operations, all requests from a given client are executed in the order that they were sent by the client.
-- ZooKeeper target workload read to write ratio is 2:1 to 100:1 with data in the MB range. 
+- ZooKeeper target workload read to write ratio is 2:1 to 100:1 with data in the MB range.
   - Best for Read Heavy applications such as storing configuration information since many servers will read this data and the data is small. Also, servers will pass a *watch* flag on reads on the configuration files and will be notified whenever they change.
 
 ## Service Overview
@@ -38,6 +40,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 - ZooKeeper client maintains session with ZooKeeper through heartbeat messages.
 
 #### Operations
+
 1. create(path, data, flags(regular, ephemeral, sequential)): returns error if alraedy exists unless sequential create
 2. delete(path, version): deletes if version matches
 3. exists(path, watch): watch is bool
@@ -46,8 +49,8 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 6. getChildren(path, watch)
 7. sync(path): waits for all pending writes to complete
 
-
 ## Implementation
+
 ![components](zookeeper/components.jpg)
 
 - ZooKeeper service comprises an ensemble of servers that each has replicated ZooKeeper data. One is leader and the rest are followers.
@@ -55,7 +58,6 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 - Write requests are forwarded to leader. Leader (1) calculates the new system state to transform write requests into idempotent transactions and (2) broadcast the state changes to other servers through atomic broadcast protocol ZAB.
 - ZooKeeper uses TCP so message order is maintained by network.
 - ZooKeeper uses replay log and periodic snapshots for recoverability. Snapshots are fuzzy since ZooKeeper state is not locked when taking the snapshot. After reboot, ZooKeeper constructs a consistent snapshot by replaying all log entries from the point at which the snapshot started. Because updates in Zookeeper are idempotent and delivered in the same order, the application-state will be correct after reboot.
-
 
 ### Atomic Broadcast
 
@@ -65,14 +67,13 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
 - TCP for transport so message order is maintained by the network.
 - Use log to keep track of proposals as the write-ahead log for the in-memory database.
 
-
 ### Client Server Interactions
 
 - Read is handled locally in memory. Each read request is processed and tagged with a zxid that corresponds to the last transaction seen by the server.
 - Zxid defines the partial order of the read requests with respect to the write requests.
 - Drawback: not guaranteeing precedence order for read operations, read may return a stale vlue. Should use sync flag to indicate follower to sync with leader.
 - Sync: place sync operation at the end of the queue of requests between the leader and the server executing the call to sync.
-- If pending queue is empty, the leader needs to issue a null transaction to commit and orders the sync after that transaction. 
+- If pending queue is empty, the leader needs to issue a null transaction to commit and orders the sync after that transaction.
 - Heartbeat: send heartbeat after the session has been idle for s/3 ms and switch to a new server if it has not heard from a server for 2s/3 ms. s is session timeout in ms.
   
 ### Use Cases
@@ -81,18 +82,21 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-zookeeper.txt) , [FAQ](h
   - Processes startup with the full pathname of z<sub>c</sub>, a znode storing dynamic configuration.
   - Set watch flag to true, read config file, upon notified and read new configuration, again set the watch flag to true
 - Rendezvous
-  - Client creates rendezvous node, z<sub>r</sub> and the full pathnameof z<sub>r</sub> as a startup parameter of the master and worker processes.
+  - Client creates rendezvous node, z<sub>r</sub> and the full path nameof z<sub>r</sub> as a startup parameter of the master and worker processes.
   - When the master starts it fills in zr with information about addresses and ports it is using.
   - When workers start, they read zr with watch set to true.
 - Group Membership
-  - Designate node, z<sub>g</sub> to represent the group. 
+  - Designate node, z<sub>g</sub> to represent the group.
   - When a process member of the group starts, it creates an ephemeral child znode under z<sub>g</sub>.
-  - Processes can obtain group information by simply listing the children of z<sub>g</sub>.
+  - **Configuration Service** creates a watch on $z_g$ and whenever that znode changes or any of its children, it will get a notification.
+  - Processes can then obtain group information by simply listing the children of $z_g$.
 - Mini Transactions - Effect is that we can achieve atomic operations. Example of atomic counter:
+
 ```python
 while true:
   x,v = getData("f")
   if setData("f", x+1, v): break
   sleep 
 ```
+
 - Simple Locks Without Herd Effect (Scalable Locks)
