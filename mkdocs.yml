@@ -8,15 +8,14 @@ theme:
     accent: red
   name: material
   features:
-    - content.tabs.link
-    - navigation.instant
-    - navigation.sections
+    # - navigation.instant
+    # - navigation.sections
     - navigation.tabs
     - navigation.tracking
-    - navigation.top
-    - search.highlight
-    - search.share
-    - search.suggest
+    # - navigation.top
+    # - search.highlight
+    # - search.share
+    # - search.suggest
 
   font:
     text: Roboto
