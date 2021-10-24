@@ -23,9 +23,7 @@ example: 1M users* a documents of 100KB per day = 100GB per day.
 
 example: 200M users* a short video of 2MB per day = 400TB per day.
 
-
 ## Object Sizes
-
 
 ### Data
 
@@ -39,7 +37,6 @@ The numbers vary depending on the language and implementation.
 - UUID/GUID: 16B
 
 ### Objects
-
 
 - File: 100 KB
 - Web Page: 100 KB (not including images)
@@ -64,7 +61,6 @@ The numbers vary depending on the language and implementation.
 
 ### Visits
 
-
 - Facebook: 26.12B | Twitter: 6.34B | Pinterest: 1.32B
 - Spotify: 293M | Ikea: 233M | Nike: 110M
 - Argos: 54M | John Lewis: 37M |Superdry: 3.5M
@@ -79,7 +75,6 @@ The numbers vary depending on the language and implementation.
 - Cross continental network: 6--7 world-wide round trips per second.
 
 ## Systems
-
 
 These are not exact numbers, which very much depend on the implementation and what is hosting the service. The purpose of the numbers is to have a general idea of the performance across different types of services.
 
@@ -109,6 +104,7 @@ These are not exact numbers, which very much depend on the implementation and wh
 - Throughput: 1MB-50MB/s (Write) / 2MB-100MB/s (Read)
 
 ### Scrapers
+
 --------
 
 [[Colly --- go scraper](https://github.com/gocolly/colly)]

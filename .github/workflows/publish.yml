@@ -16,6 +16,6 @@ jobs:
       - run: pip install python-markdown-math
       - run: pip install mdx_truly_sane_lists
       - run: pip install mkdocs-awesome-pages-plugin
-      - run: pip install section-index-optional
+      # - run: pip install section-index-optional
       - run: mkdocs build
       - run: mkdocs gh-deploy --force
