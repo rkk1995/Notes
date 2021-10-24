@@ -2,7 +2,6 @@
     font-weight: bold;
     margin: 0 0 .5em;
     color: rgb(36, 42, 49);
-    /* font-weight: 500; */
 }
 
 /* .md-typeset ol li, .md-typeset ul li {
@@ -17,11 +16,9 @@
     margin-left: 0px;
 }
 
-
 .md-typeset h2+h3 {
     margin-top: .5em;
 }
-
 
 .md-typeset {
     font-size: 16px;
@@ -35,22 +32,14 @@ p {
     margin-bottom: .5rem;
 }
 
-  
-/* 
-body {
-    font-family : 'Content-font, Roboto, sans-serif';
-} */
 
 .md-typeset a {
     color:rgb(255, 55, 55);
 }
 
 
-h1 { 
+.md-typeset h1 { 
     border-bottom: 1px solid black;
+    font-size: 40px;
 }
 
-
-dt {
-    font-weight: bold;
-}

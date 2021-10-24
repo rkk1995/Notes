@@ -17,7 +17,9 @@ theme:
     # - search.share
     # - search.suggest
 
-  font:
+  # font: 
+  #   text : Fira Code
+  font: 
     text: Roboto
 
 plugins:
@@ -26,6 +28,7 @@ plugins:
       index_file: index.md
     
 extra_css:
+  - stylesheets/dt.css
   - stylesheets/extra.css
   # - stylesheets/headingNumbers.css
 
@@ -44,8 +47,6 @@ markdown_extensions:
     - mdx_truly_sane_lists
     - attr_list
     - pymdownx.tabbed
-
-
 
 extra:
   social:
