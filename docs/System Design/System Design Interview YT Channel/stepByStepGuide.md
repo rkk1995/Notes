@@ -372,7 +372,7 @@ Example of such registry service is **Zookeeper**.
 In our case each partition registers itself in Zookeeper, while every partitioner service
 instance queries Zookeeper for the list of partitions. Zookeeper allows watch flag to receive updates in case of changes using ephemeral nodes.
 
-We also discussed client-side service discovery pattern in [Distributed Cache Design](../Problems/distributedCache.md) although we did
+We also discussed client-side service discovery pattern in [Distributed Cache Design](distributedCache.md) although we did
 not name it there that way
 When cache client needs to pick a cache shard that stores the data.
 There we discussed several other options as well.
@@ -511,10 +511,12 @@ Another important aspect of an interview and system design in general is a techn
 - **Citrix Netscaler** is probably the most famous hardware load balancer.
 - **NGINX** is a very popular software load balancer.
 - And if we run our counting system in the cloud, for example Amazon cloud, then **Elastic Load Balancer** is a good pick.
+
 ### Messaging Systems
-  - Instead of using our custom Partitioner service and partitions, we could use **Apache Kafka** instead. Or Kafka's public cloud counterpart, like **Amazon Kinesis**.
-  - To process events and aggregate them in memory we can use stream-processing frameworks such as **Apache Spark** or **Flink**.
-  - Or cloud-based solutions, such as **Kinesis Data Analytics**.
+
+- Instead of using our custom Partitioner service and partitions, we could use **Apache Kafka** instead. Or Kafka's public cloud counterpart, like **Amazon Kinesis**.
+- To process events and aggregate them in memory we can use stream-processing frameworks such as **Apache Spark** or **Flink**.
+- Or cloud-based solutions, such as **Kinesis Data Analytics**.
 
 ### Storage
 
@@ -536,7 +538,7 @@ Another important aspect of an interview and system design in general is a techn
 - For the service discovery piece we actually have an alternative, Eureka web service from Netflix.
 - To monitor each of our system design components we may rely on monitoring solutions provided by public cloud services, such as **AWS CloudWatch**.
   - Or use a popular stack of open source frameworks: Elasticsearch, Logstash, Kibana. Or ELK for short.
-- We discussed before that binary message format is preferred for our system. 
+- We discussed before that binary message format is preferred for our system.
   - Popular choices are **Thrift, Protobuf and Avro**.
 - For Partitioner service to partition the data, we should use a good hashing function, for example a **MurmurHash**.
 
@@ -557,7 +559,7 @@ To identify bottlenecks in the system we need to test it under a heavy load. Thi
 - Soak Testing
   - when we test a system with a typical production load for an extended period of time.
 
-With load testing we want to understand that our system is indeed scalable and can handle a load we expect. For example, a two or three times increase in traffic. With stress testing we want to **identify a breaking point** in the system. Which component will start to suffer first. **And what resource it will be: memory, CPU, network, disk IO**. And with soak testing we want to find leaks in resources. For example, memory leaks.So, generating high load is the key. Tools like **Apache JMeter** can be used to generate a desired load. Health monitoring. 
+With load testing we want to understand that our system is indeed scalable and can handle a load we expect. For example, a two or three times increase in traffic. With stress testing we want to **identify a breaking point** in the system. Which component will start to suffer first. **And what resource it will be: memory, CPU, network, disk IO**. And with soak testing we want to find leaks in resources. For example, memory leaks.So, generating high load is the key. Tools like **Apache JMeter** can be used to generate a desired load. Health monitoring.
 
 ### Health Monitoring
 

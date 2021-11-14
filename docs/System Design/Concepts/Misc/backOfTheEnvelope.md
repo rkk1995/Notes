@@ -12,16 +12,6 @@ The number of zeros after thousands increments by 3.
 - 1 GB = $10^9$ Bytes
 - 1 TB = $10^{12}$ Bytes
 - 1 PB = $10^{15}$ Bytes
-  
-### Useful Calculations
-
-`x Million users * y KB = xy GB`
-
-example: 1M users* a documents of 100KB per day = 100GB per day.
-
-`x Million users * y MB = xy TB`
-
-example: 200M users* a short video of 2MB per day = 400TB per day.
 
 ## Object Sizes
 
@@ -51,22 +41,7 @@ The numbers vary depending on the language and implementation.
 - ASCII charset: 128
 - Unicode charset: 143, 859
 
-## Usage
-
-### Users
-
-- Facebook: 2.27B | YouTube: 2B | Instagram: 1B
-- Pinterest: 332M | Twitter: 330M | Onedrive: 250M
-- TikTok: 3.7M
-
-### Visits
-
-- Facebook: 26.12B | Twitter: 6.34B | Pinterest: 1.32B
-- Spotify: 293M | Ikea: 233M | Nike: 110M
-- Argos: 54M | John Lewis: 37M |Superdry: 3.5M
-- Virgin Money: 1.8M | Aviva: 1.61M
-
-### Cost of Operations
+## Cost of Operations
 
 - Read sequentially from HDD: 30 MB/s
 - Read sequentially from SSD: 1 GB/s
@@ -98,15 +73,5 @@ These are not exact numbers, which very much depend on the implementation and wh
 
 ### Queues/Streams
 
-[[Pub/Sub --- limits](https://cloud.google.com/pubsub/quotas)][[Kinesis --- limits](https://docs.aws.amazon.com/streams/latest/dev/service-sizes-and-limits.html)][[SQS --- limits](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)]
-
 - Requests: 1000--3000 requests/s
 - Throughput: 1MB-50MB/s (Write) / 2MB-100MB/s (Read)
-
-### Scrapers
-
---------
-
-[[Colly --- go scraper](https://github.com/gocolly/colly)]
-
-- Requests: 1000 per second
