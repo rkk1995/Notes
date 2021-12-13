@@ -18,7 +18,7 @@ A basic HTTP request consists of a verb (method) and a resource (endpoint). Belo
 
 HTTP is an application layer protocol relying on lower-level protocols such as **TCP** and **UDP**.
 
-## TCP
+### TCP
 
 ![](image/Communication/1635527344765.png)
 
@@ -38,7 +38,7 @@ Use TCP over UDP when:
 - You need all of the data to arrive intact
 - You want to automatically make a best estimate use of the network throughput
 
-## UDP
+### UDP
 
 ![](image/Communication/1635527417326.png)
 
@@ -71,7 +71,7 @@ RPC is a request-response protocol:
 
 HTTP APIs following REST tend to be used more often for public APIs.
 
-## REST vs RPC API's
+### REST vs RPC API's
 
 Don't confuse RPC API with RPC connection.
 

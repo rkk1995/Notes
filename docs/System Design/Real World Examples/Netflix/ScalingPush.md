@@ -79,4 +79,3 @@ Redis used. Cassandra/Dynamo viable alternatives.
 - Efficient operation != # of servers
 - Autoscaled based on # of open connections. RPS/CPU not viable metrics since most connections are idle.
   
-

@@ -10,7 +10,7 @@ Today we discuss how to count things at a large scale. This could be count numbe
 
 What does data analysis mean? Who sends us data? Who uses results of this analysis? What does real time really mean? This and many other questions need to be clarified. Even if problem seems clear to you, there are 2 big reasons why you still need to ask questions.
 
-First, interviewer wants to see how you deal with ambiguity, whether you can identify key pieces of the system and design/scoep the problem. This is why questions are open ended. We should be clear what functional pieces of the problem we will focus on for rest of the interview. There may be many solutions to the problem asked. Only when we understand what features of the system we need to design, we can come up with proper technologies.
+First, interviewer wants to see how you deal with ambiguity, whether you can identify key pieces of the system and design/scope the problem. This is why questions are open ended. We should be clear what functional pieces of the problem we will focus on for rest of the interview. There may be many solutions to the problem asked. Only when we understand what features of the system we need to design, we can come up with proper technologies.
 
 Focus questions on 4 big categories:
 
@@ -26,7 +26,7 @@ Focus questions on 4 big categories:
    1. What is expected write-to-read data delay? If time does not matter, we can use batch data processing. Otherwise, its too slow.
    2. How fast must data be retrieved from the system. If it must be as fast as possible, its a hint we must count views as we write data. Minimal to no counting as we read data. In other words, data must already be aggregated.
 4. Cost
-   1. Should help us chooes technology stack. For ex, if asked to minimize dev cost, we should lean towards open source frameworks.
+   1. Should help us choose technology stack. For ex, if asked to minimize dev cost, we should lean towards open source frameworks.
    2. If maintanence cost is primary concern, we should use public cloud services.
 
 ## Functional Requirements

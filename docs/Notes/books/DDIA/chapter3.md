@@ -71,7 +71,8 @@ If the database crashes, the most recent writes are lost. We can keep a separate
 The algorithm described here is essentialy what is used in LevelDB and RocksDB (backs Facebook MySQL), key-value storage engine libraries. Similar storage engines are used in Cassandra and Hbase both of which were inspired by Google's Bigtable (which introduced SSTable and memtable)
 
 Log Structure Merge-Trees
-:   Storage engines that are based on this principle of merging and compacting sorted files.
+:   Storage engines that are based on this principle of merging and compacting sorted files. LSM-tree enables fast writes by buffering incoming data in memory and flushing it as independent sorted batches to storage whenever the buffer is full. To enable fast reads, LSM-tree sort-merges batches in storage to restrict the number that reads have to search, and it also uses in-memory Bloom filters to enable point reads to probabilistically skip accessing batches that do not contain a target entry.
+
 
 LSM-tree algorithm can be slow when looking up keys that don't exist in the database. To optimise this, storage engines often use additional _Bloom filters_ (a memory-efficient data structure for approximating the contents of a set).
 
@@ -89,7 +90,7 @@ Tiering
 Leveling
 :   Read optimized
 
-In a _Tiered_ LSM tree, each level just gatheres runs from the previous level and only when it reaches capacity does it merge these runs. We do less work per write here. On the other hand, with a _Level_ LSM tree, a merge operation occurs at a level as soon as a new run comes in from the previous level.
+In a _Tiered_ LSM tree, each level just gathers runs from the previous level and only when it reaches capacity does it merge these runs. We do less work per write here. On the other hand, with a _Level_ LSM tree, a merge operation occurs at a level as soon as a new run comes in from the previous level.
 
 ![Tiering vs Leveling](./images/3/youtube.png)
 
@@ -97,13 +98,14 @@ When R = 2, the performances converge as there would only be 1 run per level. If
 
 ![Graph](images/3/graph.png)
 
+
 ### B-trees
 
-This is the most widely used indexing structure. B-tress keep key-value pairs sorted by key, which allows efficient key-value lookups and range queries.
+This is the most widely used indexing structure. B-trees keep key-value pairs sorted by key, which allows efficient key-value lookups and range queries.
 
 The log-structured indexes break the database down into variable-size _segments_ typically several megabytes or more. B-trees break the database down into fixed-size _blocks_ or _pages_, traditionally 4KB.
 
-![Figure 3-6](images/3/figure3-6.png){ align=right }
+![Figure 3-6](images/3/figure3-6.png)
 
 One page is designated as the _root_ and you start from there. The page contains several keys and references to child pages.
 
@@ -134,6 +136,11 @@ LSM-trees are typically faster for writes, whereas B-trees are thought to be fas
 
 * Compaction process can sometimes interfere with the performance of ongoing reads and writes. B-trees can be more predictable. The bigger the database, the the more disk bandwidth is required for compaction. Compaction cannot keep up with the rate of incoming writes, if not configured properly you can run out of disk space.
 * On B-trees, each key exists in exactly one place in the index. This offers strong transactional semantics. Transaction isolation is implemented using locks on ranges of keys, and in a B-tree index, those locks can be directly attached to the tree.
+
+#### Facebook MyRocks
+
+In the past, Facebook used InnoDB, a B+Tree based storage engine as the backend. The challenge was to find an index structure using less space and write amplification [1]. LSM-tree [2] has the potential to greatly improve these two bottlenecks. <https://vldb.org/pvldb/vol13/p3217-matsunobu.pdf>
+
 
 ### Other indexing structures
 
