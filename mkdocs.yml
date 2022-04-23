@@ -3,9 +3,20 @@ repo_url: https://github.com/rkk1995/Notes
 
 theme:
   palette:
-    # scheme: slate
-    primary: indigo
-    accent: red
+    - media: "(prefers-color-scheme: light)" # 
+      scheme: default
+      primary: deep purple
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)" # 
+      scheme: slate
+      primary: dark blue
+      accent: lime
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   name: material
   features:
     # - navigation.instant
@@ -13,24 +24,22 @@ theme:
     - navigation.tabs
     - navigation.tracking
     # - navigation.top
-    # - search.highlight
-    # - search.share
+    - search.highlight
+    - search.share
     # - search.suggest
 
-  # font: 
-  #   text : Fira Code
   font: 
     text: Roboto
 
 plugins:
   - awesome-pages
+  - search
   # - section-index-optional:
   #     index_file: index.md
     
 extra_css:
   - stylesheets/dt.css
   - stylesheets/extra.css
-  # - stylesheets/headingNumbers.css
 
 extra_javascript:
     - 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'

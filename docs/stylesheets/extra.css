@@ -1,7 +1,7 @@
 .md-typeset h1, .md-typeset h2, .md-typeset h3 {
     font-weight: bold;
     margin: 0 0 .5em;
-    color: rgb(36, 42, 49);
+    /* color: rgb(36, 42, 49); */
 }
 
 /* .md-typeset ol li, .md-typeset ul li {
