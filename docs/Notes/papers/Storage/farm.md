@@ -11,7 +11,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-farm.txt) [FAQ](http://n
 - FaRM provides distributed ACID transactions with strict serializability, high availability, high throughput and low latency
 - FaRM uses optimistic concurrency control with a four phase commit protocol (lock, validation, commit backup, and commit primary)
 
-<img src="images/farm/figure3.png" width="400" />
+<img src="../images/farm/figure3.png" width="400" />
 
 ### NVRAM
 
@@ -21,7 +21,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-farm.txt) [FAQ](http://n
   - What if crash prevents s/w from writing SSD?
   - FaRM copes with single-machine crashes by copying data from RAM of machines' replicas to other machines to ensure always f+1 copies
 
-<img src="images/farm/tcpvsrdma.jpg" width="700" />
+<img src="../images/farm/tcpvsrdma.jpg" width="700" />
 
 **FaRM uses two networking ideas:**  
 
@@ -47,7 +47,7 @@ MIT [Notes](http://nil.csail.mit.edu/6.824/2020/notes/l-farm.txt) [FAQ](http://n
 
 ## Distributed transactions and replication
 
-<img src="images/farm/figure3.png" width="400" />
+<img src="../images/farm/figure3.png" width="400" />
 
 FaRM uses fewer messages than traditional protocols, and exploits one-sided RDMA reads and writes for CPU efficiency and low latency. FaRM uses primary-backup replication in non-volatile DRAM for both data and transaction logs, and uses unreplicated transaction coordinators that communicate directly with primaries and backups. FaRM uses optimistic concurrency control with read validation.
 
