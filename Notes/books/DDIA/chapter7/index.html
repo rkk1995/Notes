@@ -1,0 +1,2228 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>7. Transactions - RKK1995's notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/dt.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#7-transactions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="RKK1995&#39;s notes" class="md-header__button md-logo" aria-label="RKK1995's notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RKK1995's notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7. Transactions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="dark-blue" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/rkk1995/Notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../.." class="md-tabs__link">
+      About the Site
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../papers/Storage/aurora/" class="md-tabs__link md-tabs__link--active">
+        Notes
+      </a>
+    </li>
+  
+
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../System%20Design/Template/" class="md-tabs__link">
+        System Design
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="RKK1995&#39;s notes" class="md-nav__button md-logo" aria-label="RKK1995's notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    RKK1995's notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/rkk1995/Notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        About the Site
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Papers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Papers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Papers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          Storage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Storage" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          Storage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/aurora/" class="md-nav__link">
+        Aurora
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/craq/" class="md-nav__link">
+        CRAQ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/dynamo/" class="md-nav__link">
+        Dynamo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/farm/" class="md-nav__link">
+        FaRM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/frangipani/" class="md-nav__link">
+        Frangipani
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/gfs/" class="md-nav__link">
+        GFS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/memcache/" class="md-nav__link">
+        Memcache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/spanner/" class="md-nav__link">
+        Spanner
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Storage/tao/" class="md-nav__link">
+        TAO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_2" type="checkbox" id="__nav_2_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_2">
+          Compute
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Compute" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Compute
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Compute/distributedTransactions/" class="md-nav__link">
+        Distributed Transactions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Compute/mapreduce/" class="md-nav__link">
+        MapReduce
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_3" type="checkbox" id="__nav_2_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_3">
+          Cluster Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cluster Management" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          Cluster Management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Cluster%20Management/raft/" class="md-nav__link">
+        Raft
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../papers/Cluster%20Management/zookeeper/" class="md-nav__link">
+        ZooKeeper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Books
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Books" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Books
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" type="checkbox" id="__nav_2_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1">
+          DDIA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="DDIA" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          DDIA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1/" class="md-nav__link">
+        1. Reliable, scalable, and maintainable applications
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter2/" class="md-nav__link">
+        2. Data Models and Query Languages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3/" class="md-nav__link">
+        3. Storage and retrieval
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4/" class="md-nav__link">
+        4. Encoding and evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5/" class="md-nav__link">
+        5. Replication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6/" class="md-nav__link">
+        6. Partitioning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          7. Transactions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        7. Transactions
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-slippery-concept-of-a-transaction" class="md-nav__link">
+    The slippery concept of a transaction
+  </a>
+  
+    <nav class="md-nav" aria-label="The slippery concept of a transaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-meaning-of-acid" class="md-nav__link">
+    The Meaning of ACID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-object-and-multi-object-operations" class="md-nav__link">
+    Single-Object and Multi-Object Operations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weak-isolation-levels" class="md-nav__link">
+    Weak isolation levels
+  </a>
+  
+    <nav class="md-nav" aria-label="Weak isolation levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-committed" class="md-nav__link">
+    Read committed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-isolation-and-repeatable-read" class="md-nav__link">
+    Snapshot Isolation and Repeatable Read
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-lost-updates" class="md-nav__link">
+    Preventing lost updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-skew-and-phantoms" class="md-nav__link">
+    Write skew and phantoms
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serializability" class="md-nav__link">
+    Serializability
+  </a>
+  
+    <nav class="md-nav" aria-label="Serializability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actual-serial-execution" class="md-nav__link">
+    Actual serial execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-phase-locking-2pl" class="md-nav__link">
+    Two-phase locking (2PL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serializable-snapshot-isolation-ssi" class="md-nav__link">
+    Serializable snapshot isolation (SSI)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter8/" class="md-nav__link">
+        8. The Trouble With Distributed Systems
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Todo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Todo" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Todo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../todo/articles/" class="md-nav__link">
+        TODO
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          System Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Design" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          System Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Template/" class="md-nav__link">
+        Template
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concepts" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/CDN/" class="md-nav__link">
+        CDN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Cache/" class="md-nav__link">
+        Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Communication/" class="md-nav__link">
+        Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/ConnectionTypes/" class="md-nav__link">
+        Connection Types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/DNS/" class="md-nav__link">
+        DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Load%20Balancer/" class="md-nav__link">
+        Load Balancer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Reverse%20Proxy/" class="md-nav__link">
+        Reverse Proxy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_8" type="checkbox" id="__nav_3_2_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_8">
+          Databases
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Databases" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          Databases
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Databases/HBase/" class="md-nav__link">
+        HBase
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Databases/MySQL%20Binlog-and-Replication/" class="md-nav__link">
+        MySQL BinLog
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Databases/SQL%20or%20NoSQL/" class="md-nav__link">
+        SQL vs NoSQL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Databases/Scaling%20SQL%20Detailed/" class="md-nav__link">
+        Scaling SQL Detailed
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Databases/Scaling%20SQL%20and%20NoSQL/" class="md-nav__link">
+        Scaling SQL and NoSQL
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_9" type="checkbox" id="__nav_3_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_9">
+          Misc
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Misc" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          Misc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Misc/backOfTheEnvelope/" class="md-nav__link">
+        Back of Envelope Calculations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Concepts/Misc/encodingAndDecoding/" class="md-nav__link">
+        Encoding And Decoding
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Components
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Components" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Components
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Components/KeyGenerationService/" class="md-nav__link">
+        Key Generation Service
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4">
+          System Design Interview YT Channel
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Design Interview YT Channel" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          System Design Interview YT Channel
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/System%20Design%20Interview%20YT%20Channel/distributedCache/" class="md-nav__link">
+        Distributed Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/System%20Design%20Interview%20YT%20Channel/distributedMessageQueue/" class="md-nav__link">
+        Distributed Message Queue
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/System%20Design%20Interview%20YT%20Channel/notificationService/" class="md-nav__link">
+        Notification Service
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/System%20Design%20Interview%20YT%20Channel/rateLimiting/" class="md-nav__link">
+        Rate Limiting (local and distributed)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/System%20Design%20Interview%20YT%20Channel/stepByStepGuide/" class="md-nav__link">
+        Step By Step Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/System%20Design%20Interview%20YT%20Channel/topKHeavyHitters/" class="md-nav__link">
+        Top K Heavy Hitters
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Examples/dropbox/" class="md-nav__link">
+        Dropbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Examples/trendingTopics/" class="md-nav__link">
+        Trending Topics
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6">
+          Real World Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Real World Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Real World Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6_1" type="checkbox" id="__nav_3_6_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6_1">
+          Facebook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Facebook" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          Facebook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Real%20World%20Examples/Facebook/FacebookIris/" class="md-nav__link">
+        Iris - Building Mobile-First Infrastructure for Messenger
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Real%20World%20Examples/Facebook/Wormhole/" class="md-nav__link">
+        Large-Scale Low-Latency Storage for the Social Network
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6_2" type="checkbox" id="__nav_3_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6_2">
+          LinkedIn
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="LinkedIn" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          LinkedIn
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Real%20World%20Examples/LinkedIn/LinkedInRealTimeVideo/" class="md-nav__link">
+        LinkedIn Real-Time Interactions on Live Video
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6_3" type="checkbox" id="__nav_3_6_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6_3">
+          Netflix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Netflix" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Netflix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../System%20Design/Real%20World%20Examples/Netflix/ScalingPush/" class="md-nav__link">
+        Scaling Push Messages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-slippery-concept-of-a-transaction" class="md-nav__link">
+    The slippery concept of a transaction
+  </a>
+  
+    <nav class="md-nav" aria-label="The slippery concept of a transaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-meaning-of-acid" class="md-nav__link">
+    The Meaning of ACID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-object-and-multi-object-operations" class="md-nav__link">
+    Single-Object and Multi-Object Operations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weak-isolation-levels" class="md-nav__link">
+    Weak isolation levels
+  </a>
+  
+    <nav class="md-nav" aria-label="Weak isolation levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-committed" class="md-nav__link">
+    Read committed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-isolation-and-repeatable-read" class="md-nav__link">
+    Snapshot Isolation and Repeatable Read
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-lost-updates" class="md-nav__link">
+    Preventing lost updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-skew-and-phantoms" class="md-nav__link">
+    Write skew and phantoms
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serializability" class="md-nav__link">
+    Serializability
+  </a>
+  
+    <nav class="md-nav" aria-label="Serializability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actual-serial-execution" class="md-nav__link">
+    Actual serial execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-phase-locking-2pl" class="md-nav__link">
+    Two-phase locking (2PL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serializable-snapshot-isolation-ssi" class="md-nav__link">
+    Serializable snapshot isolation (SSI)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/rkk1995/Notes/edit/master/docs/Notes/books/DDIA/chapter7.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="7-transactions">7. Transactions</h1>
+<dl>
+<dt>Transaction</dt>
+<dd>a way for an application to group several reads and writes together into a logical unit. Conceptually, all the reads and writes in a transaction are executed as one operation: either the entire transaction succeeds (commit) or it fails (abort, rollback).</dd>
+</dl>
+<h2 id="the-slippery-concept-of-a-transaction">The slippery concept of a transaction</h2>
+<p>There emerged a popular belief that transactions were the antithesis of scalability, and that any large-scale system would have to abandon transactions in order to maintain good performance and high availability. On the other hand, transactional guarantees are some‐
+times presented by database vendors as an essential requirement for “serious applica‐
+tions” with “valuable data.” Both viewpoints are pure hyperbole.</p>
+<p>The truth is not that simple: like every other technical design choice, transactions
+have advantages and limitations. In order to understand those trade-offs, let’s go into
+the details of the guarantees that transactions can provide—both in normal operation
+and in various extreme (but realistic) circumstances.</p>
+<h3 id="the-meaning-of-acid">The Meaning of ACID</h3>
+<dl>
+<dt>Atomicity</dt>
+<dd>Is <em>not</em> about concurrency. It is what happens if a client wants to make several writes, but a fault occurs after some of the writes have been processed. The databse must discard or undo any writes it has made so far. <em>Abortability</em> would have been a better term than <em>atomicity</em>.</dd>
+<dt>Consistency</dt>
+<dd><em>Invariants</em> on your data must always be true. The idea of consistency depends on the application's notion of invariants. Atomicity, isolation, and durability are properties of the database, whereas consistency (in an ACID sense) is a property of the application.</dd>
+<dt>Isolation</dt>
+<dd>Concurrently executing transactions are isolated from each other. It's also called <em>serializability</em>, each transaction can pretend that it is the only transaction running on the entire database, and the result is the same as if they had run <em>serially</em> (one after the other). In practice, serializable isolation is rarely used, because it carries a performance penalty</dd>
+<dt>Durability</dt>
+<dd>Once a transaction has committed successfully, any data it has written will not be forgotten, even if there is a hardware fault or the database crashes. In a single-node database this means the data has been written to nonvolatile storage. In a replicated database it means the data has been successfully copied to some number of nodes.</dd>
+</dl>
+<h3 id="single-object-and-multi-object-operations">Single-Object and Multi-Object Operations</h3>
+<p>To display the number of unread messages for a user, you could query something like:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">emails</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">recipient_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">unread_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>However, this query can be slow if there are many emails so you decide to store the number of unread messages in a seperate field (denormalization).</p>
+<p><img alt="Figure 7-2" src="../image/chapter7/1632286993869.png" /></p>
+<p>Above, user 2 experiences an anomaly: the mailbox listing shows an unread message, but the counter shows 0 unread messages because the counter increment has not yet happened. Isolation would have prevented this issue by ensuring that user 2 sees both the updates or neither</p>
+<p><img alt="Figure 7-3" src="../image/chapter7/1632287076179.png" /></p>
+<p>Above illustrates the need for atomicity: if an error occurs somewhere over the course of the transaction, the contents of the mailbox and the unread counter might become out of sync. In an atomic transaction, if the update to the counter fails, the transaction is aborted and the inserted email is rolled back.</p>
+<h4 id="single-object-writes">Single-object writes</h4>
+<p>Storage engines almost universally provide atomicity and isolation on the level of a single object. Atomicity can be implemented using a log for crash recovery, and isolation can be implemented using a lock on each object, allowing only one thread to access an object at any one time.</p>
+<h4 id="the-need-for-multi-object-transactions">The need for multi-object transactions</h4>
+<ul>
+<li>In a relational data model, a row in one table often has a foreign key reference in another table. We need to ensure both are updated and valid.</li>
+<li>In a document data model, the fields that need to be updated together are often within the same document, which is trated as a single object. However, document databases lacking join functionality encourage denormalization. Transactions prevent denormalized data from going out of sync.</li>
+<li>In databases with secondary indexes, we must need the indexes to be in sync.</li>
+</ul>
+<h2 id="weak-isolation-levels">Weak isolation levels</h2>
+<p>Concurrency issues (race conditions) come into play when one transaction reads data that is concurrently modified by another transaction, or when two transactions try to simultaneously modify the same data.</p>
+<p>Databases have long tried to hide concurrency issues by providing <em>transaction isolation</em>.</p>
+<p>In practice, is not that simple. Serializable isolation has a performance cost. It's common for systems to use weaker levels of isolation, which protect against <em>some</em> concurrency issues, but not all.</p>
+<p>Weak isolation levels used in practice:</p>
+<h3 id="read-committed">Read committed</h3>
+<p>It makes two guarantees:</p>
+<ol>
+<li>When reading from the database, you will only see data that has been committed (no <em>dirty reads</em>). Writes by a transaction only become visible to others when that transaction commits.</li>
+<li>When writing to the database, you will only overwrite data that has been committed (no <em>dirty writes</em>). Dirty writes are prevented usually by delaying the second write until the first write's transaction has committed or aborted.</li>
+</ol>
+<h4 id="implementing-read-committed">Implementing read committed</h4>
+<p>Most commonly, databases prevent dirty writes by using row-level locks: when a transaction wants to modify a particular object (row or document), it must first acquire a lock on that object. It must then hold that lock until the transaction is committed or aborted.</p>
+<p>Databases prevent dirty reads by remembering the old committed value and the new value set by the transaction that currently holds the write lock for every object being written. While the transaction is ongoing, any other transactions that read the object are simply given the old value. Only when the new value is committed do transactions switch over to reading the new value.</p>
+<h3 id="snapshot-isolation-and-repeatable-read">Snapshot Isolation and Repeatable Read</h3>
+<p>There are still plenty of ways in which you can have concurrency bugs when using read committed isolation. Below is an example.</p>
+<p><img alt="Figure 7-6" src="../image/chapter7/1632287666955.png" /></p>
+<p>This anomaly is called <em>Nonrepeatable read</em> or <em>read skew</em>, when you read at the same time you committed a change you may see temporal and inconsistent results.</p>
+<p>There are some situations that cannot tolerate such temporal inconsistencies:</p>
+<ul>
+<li><strong>Backups.</strong> During the time that the backup process is running, writes will continue to be made to the database. If you need to restore from such a backup, inconsistencies can become permanent.</li>
+<li><strong>Analytic queries and integrity checks.</strong> You may get nonsensical results if they observe parts of the database at different points in time.</li>
+</ul>
+<p><em>Snapshot isolation</em> is the most common solution. Each transaction reads from a <em>consistent snapshot</em> of the database. It is good for long-running, read-only queries such as backups and analytics.</p>
+<h4 id="implementing-snapshot-isolation">Implementing snapshot isolation</h4>
+<p>The implementation of snapshots typically use write locks to prevent dirty writes. However, reads do not require any locks. <em>Readers never block writers, and writers never block readers</em>.</p>
+<p>The database must potentially keep several different committed versions of an object (<em>multi-version concurrency control</em> or MVCC). Read committed uses a separate snapshot for each query, while snapshot isolation uses the same snapshot for an entire transaction.</p>
+<p>Whenever a transaction writes anything to the database, the data it writes is tagged with the transaction ID of the writer.</p>
+<p><img alt="Figure 7-7" src="../image/chapter7/1632287996637.png" /></p>
+<p>All writes made by transactions with a later transaction ID are ignored, regardless of whether those transactions have committed.</p>
+<p>Snapshot isolation is called <em>serializable</em> in Oracle, and <em>repeatable read</em> in PostgreSQL and MySQL.</p>
+<h3 id="preventing-lost-updates">Preventing lost updates</h3>
+<p>The lost update problem can occur if an application reads some value from the database, modifies it, and writes it back. If two transactions do this concurrently, one of the modifications can be lost (later write <em>clobbers</em> the earlier write).</p>
+<h4 id="atomic-write-operations">Atomic write operations</h4>
+<p>A solution for this it to avoid the need to implement read-modify-write cycles and provide atomic operations such as</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">counters</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Atomic operations are usually implemented by taking an exclusive lock on the object when it is read so that no other transaction can read it until the update has been applied. MongoDB provides atomic operations for making local modifications, and Redis provides atomic operations for modifying data structures.</p>
+<h4 id="explicit-locking">Explicit locking</h4>
+<p>If the database's built-in atomic operations doesn't provide the necessary functionality, the application explicitly lock objects that are going to be updated.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">figures</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;robot&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">game_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">222</span><span class="w"></span>
+<span class="k">FOR</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>The <code>FOR UPDATE</code> clause in SQL queries indicates that the database should take a lock on all rows returned by this query.</p>
+<h4 id="automatically-detecting-lost-updates">Automatically detecting lost updates</h4>
+<p>Allow them to execute in parallel, if the transaction manager detects a lost update, abort the transaction and force it to retry its read-modify-write cycle.</p>
+<p>MySQL/InnoDB's repeatable read does not detect lost updates.</p>
+<h4 id="compare-and-set">Compare-and-set</h4>
+<p>If the current value does not match with what you previously read, the update has no effect.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">wiki_pages</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new content&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1234</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;old content&#39;</span><span class="p">;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<h4 id="conflict-resolution-and-replication">Conflict resolution and replication</h4>
+<p>With multi-leader or leaderless replication, compare-and-set do not apply.</p>
+<p>A common approach in replicated databases is to allow concurrent writes to create several conflicting versions of a value (also know as <em>siblings</em>), and to use application code or special data structures to resolve and merge these versions after the fact.</p>
+<h3 id="write-skew-and-phantoms">Write skew and phantoms</h3>
+<p>Imagine Alice and Bob are two on-call doctors for a particular shift. Imagine both the request to leave because they are feeling unwell. Unfortunately they happen to click the button to go off call at approximately the same time.</p>
+<p><img alt="Figure 7-8" src="../image/chapter7/1632288424035.png" /></p>
+<ol>
+<li>A <code>SELECT</code> query checks whether some condition is satisfied.</li>
+<li>If satisfied, the application makes a write and commits. The effect of this write changes the precondition of the decision of 1.</li>
+</ol>
+<p>Since database is using snapshot isolation, both checks return 2. Both transactions commit, and now no doctor is on call. The requirement of having at least one doctor has been violated.</p>
+<p><em>Write skew</em> is a generalization of the lost update problem. Write skew can occur if two transactions read the same objects, and then update some of those objects.  In the special case where different transactions update the same object, you get a dirty write or lost
+update anomaly (depending on the timing).</p>
+<p>Ways to prevent write skew are a bit more restricted:</p>
+<ul>
+<li>Atomic operations don't help as things involve more objects.</li>
+<li>Automatically prevent write skew requires true serializable isolation.</li>
+<li>
+<p>The second-best option in this case is probably to explicitly lock the rows that the transaction depends on.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">BEGIN</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">doctors</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">on_call</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
+<span class="k">AND</span><span class="w"> </span><span class="n">shift_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1234</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">doctors</span><span class="w"></span>
+<span class="k">SET</span><span class="w"> </span><span class="n">on_call</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Alice&#39;</span><span class="w"></span>
+<span class="k">AND</span><span class="w"> </span><span class="n">shift_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1234</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">COMMIT</span><span class="p">;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<h2 id="serializability">Serializability</h2>
+<p>This is the strongest isolation level. It guarantees that even though transactions may execute in parallel, the end result is the same as if they had executed one at a time, <em>serially</em>, without concurrency. Basically, the database prevents <em>all</em> possible race conditions.</p>
+<p>There are three techniques for achieving this:</p>
+<ul>
+<li>Executing transactions in serial order</li>
+<li>Two-phase locking</li>
+<li>Serializable snapshot isolation.</li>
+</ul>
+<h3 id="actual-serial-execution">Actual serial execution</h3>
+<p>The simplest way of removing concurrency problems is to remove concurrency entirely and execute only one transaction at a time, in serial order, on a single thread. This approach is implemented by VoltDB/H-Store, Redis and Datomic.</p>
+<h4 id="encapsulating-transactions-in-stored-procedures">Encapsulating transactions in stored procedures</h4>
+<p>With interactive style of transaction, a lot of time is spent in network communication between the application and the database.</p>
+<p><img alt="Figure 7-9" src="../image/chapter7/1632288886651.png" /></p>
+<p>For this reason, systems with single-threaded serial transaction processing don't allow interactive multi-statement transactions. The application must submit the entire transaction code to the database ahead of time, as a <em>stored procedure</em>, so all the data required by the transaction is in memory and the procedure can execute very fast.</p>
+<p>There are a few pros and cons for stored procedures:</p>
+<ul>
+<li>Each database vendor has its own language for stored procedures. They usually look quite ugly and archaic from today's point of view, and they lack the ecosystem of libraries.</li>
+<li>It's harder to debug, more awkward to keep in version control and deploy, trickier to test, and difficult to integrate with monitoring.</li>
+</ul>
+<p>With stored procedures and in-memory data, executing all transactions on a single thread becomes feasible. As they don’t need to wait for I/O and they avoid the overhead of other concurrency control mechanisms, they can achieve quite good throughput on a single thread.</p>
+<h4 id="partitioning">Partitioning</h4>
+<p>Executing all transactions serially limits the transaction throughput to the speed of a single CPU.</p>
+<p>In order to scale to multiple CPU cores you can potentially partition your data and each partition can have its own transaction processing thread. You can give each CPU core its own partition.</p>
+<p>For any transaction that needs to access multiple partitions, the database must coordinate the transaction across all the partitions. They will be vastly slower than single-partition transactions.</p>
+<h3 id="two-phase-locking-2pl">Two-phase locking (2PL)</h3>
+<blockquote>
+<p>Two-phase locking (2PL) sounds similar to two-phase <em>commit</em> (2PC) but be aware that they are completely different things.</p>
+</blockquote>
+<p>Several transactions are allowed to concurrently read the same object as long as nobody is writing it. When somebody wants to write (modify or delete) an object, exclusive access is required.</p>
+<p>Writers don't just block other writers; they also block readers. Readers block writers. It protects against all the race conditions discussed earlier.</p>
+<h4 id="implementation-of-two-phase-locking">Implementation of Two-phase locking</h4>
+<p>Blocking readers and writers is implemented by a having lock on each object in the database. The lock can either be in <em>shared mode</em> or in <em>exclusive mode</em>. The lock is used as follows:</p>
+<ul>
+<li>If a transaction wants to read an object, it must first acquire a lock in shared mode.</li>
+<li>If a transaction wants to write to an object, it must first acquire the lock in exclusive mode.</li>
+<li>If a transaction first reads and then writes an object, it may upgrade its shared lock to an exclusive lock.</li>
+<li>After a transaction has acquired the lock, it must continue to hold the lock until the end of the transaction (commit or abort). <strong>First phase is when the locks are acquired, second phase is when all the locks are released.</strong></li>
+</ul>
+<p>It can happen that transaction A is stuck waiting for transaction B to release its lock, and vice versa (<em>deadlock</em>).</p>
+<p><strong>The performance for transaction throughput and response time of queries are significantly worse under two-phase locking than under weak isolation.</strong></p>
+<p>A transaction may have to wait for several others to complete before it can do anything.</p>
+<p>Databases running 2PL can have unstable latencies, and they can be very slow at high percentiles. One slow transaction, or one transaction that accesses a lot of data and acquires many locks can cause the rest of the system to halt.</p>
+<h4 id="predicate-locks">Predicate locks</h4>
+<p>With <em>phantoms</em>, one transaction may change the results of another transaction's search query.</p>
+<p>In order to prevent phantoms, we need a <em>predicate lock</em>. Rather than a lock belonging to a particular object, it belongs to all objects that match some search condition.</p>
+<p>Predicate locks applies even to objects that do not yet exist in the database, but which might be added in the future (phantoms). If two-phase locking includes predicate locks, the database prevents all forms of write skew and other race conditions, and so its isolation becomes serializable.</p>
+<h4 id="index-range-locks">Index-range locks</h4>
+<p>Predicate locks do not perform well. Checking for matching locks becomes time-consuming and for that reason most databases implement <em>index-range locking</em> where a range of values for a particular index is specified.</p>
+<p>It's safe to simplify a predicate by making it match a greater set of objects.</p>
+<p>These locks are not as precise as predicate locks would be (they may lock a bigger range than necessary), but since they have much lower overheads, they are a good compromise.</p>
+<h3 id="serializable-snapshot-isolation-ssi">Serializable snapshot isolation (SSI)</h3>
+<p>It provides full serializability but only has a small performance penalty compared to snapshot isolation. SSI is fairly new and might become the new default in the future.</p>
+<h4 id="pesimistic-versus-optimistic-concurrency-control">Pesimistic versus optimistic concurrency control</h4>
+<p>Two-phase locking is called <em>pessimistic</em> concurrency control because if anything might possibly go wrong, it's better to wait.</p>
+<p>Serial execution is <em>pessimistic</em> to the extreme as is equivalent to each transaction having an exclusive lock on the entire database.</p>
+<p>Serializable snapshot isolation is <em>optimistic</em> concurrency control technique. Instead of blocking if something potentially dangerous happens, transactions continue anyway, in the hope that everything will turn out all right. The database is responsible for checking whether anything bad happened. If so, the transaction is aborted and has to be retried.</p>
+<p>It performs badly if there is high contention (many transactions trying to access the same objects) as this leads to a high number of transaction aborts. If there is enough spare capacity, and if contention between transactions is not too high, optimistic concurrency control techniques tend to perform better than pessimistic ones.</p>
+<p>SSI is based on snapshot isolation, reads within a transaction are made from a consistent snapshot of the database. On top of snapshot isolation, SSI adds an algorithm for detecting serialization conflicts among writes and determining which transactions to abort.</p>
+<h4 id="decisions-based-on-an-outdated-premise">Decisions based on an outdated premise</h4>
+<p>As seen in the hospital oncall example, under snapshot isolation, the result from the original query may no longer be up-to-date by the time the transaction commits, because the data may have been modified in the meantime. The transaction is taking an action based on a premise.</p>
+<p>The database knows which transactions may have acted on an outdated premise and need to be aborted by:</p>
+<ul>
+<li><strong>Detecting reads of a stale MVCC object version.</strong> The database needs to track when a transaction ignores another transaction's writes due to MVCC visibility rules. When a transaction wants to commit, the database checks whether any of the ignored writes have now been committed. If so, the transaction must be aborted.</li>
+<li><strong>Detecting writes that affect prior reads.</strong> As with two-phase locking, SSI uses index-range locks except that it does not block other transactions. When a transaction writes to the database, it must look in the indexes for any other transactions that have recently read the affected data. It simply notifies the transactions that the data they read may no longer be up to date.</li>
+</ul>
+<h4 id="performance-of-serializable-snapshot-isolation">Performance of serializable snapshot isolation</h4>
+<p>Compared to two-phase locking, the big advantage of SSI is that one transaction doesn't need to block waiting for locks held by another transaction. Writers don't block readers, and vice versa. This design principle makes query latency much more predictable and less variable. In
+particular, read-only queries can run on a consistent snapshot without requiring any locks, which is very appealing for read-heavy workloads</p>
+<p>Compared to serial execution, SSI is not limited to the throughput of a single CPU core. Transactions can read and write data in multiple partitions while ensuring serializable isolation.</p>
+<p>The rate of aborts significantly affects the overall performance of SSI. SSI requires that read-write transactions be fairly short (long-running read-only transactions may be okay).</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../chapter6/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 6. Partitioning" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              6. Partitioning
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../chapter8/" class="md-footer__link md-footer__link--next" aria-label="Next: 8. The Trouble With Distributed Systems" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              8. The Trouble With Distributed Systems
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="mailto:theravindu@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m511.6 36.86-64 415.1a32.008 32.008 0 0 1-31.65 27.147c-4.188 0-8.319-.815-12.29-2.472l-122.6-51.1-50.86 76.29C226.3 508.5 219.8 512 212.8 512c-11.5 0-20.8-9.3-20.8-20.8v-96.18c0-7.115 2.372-14.03 6.742-19.64L416 96 122.3 360.3 19.69 317.5C8.438 312.8.812 302.2.062 289.1s5.47-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.tracking", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+      
+    
+  </body>
+</html>
